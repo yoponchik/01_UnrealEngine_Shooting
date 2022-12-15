@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "CodeTest.h"
@@ -18,14 +18,26 @@ void ACodeTest::BeginPlay()
 
 
 	//assign variable number with integer 3
-	number = 3;
+	number1 = 3;
 
 	number2 = -7;
 	
 
 	//print value of variable number in console window
-	UE_LOG(LogTemp, Warning, TEXT("%d"), number);
-	UE_LOG(LogTemp, Warning, TEXT("%d"), number2);
+	UE_LOG(LogTemp, Warning, TEXT("Number1 is %d, Number2 is %d"), number1, number2);
+	UE_LOG(LogTemp, Warning, TEXT("float1 is %.2f, float2 is %.2f"), float1, float2);
+	UE_LOG(LogTemp, Warning, TEXT("Hello World! %s"), *string1);
+
+	isTeacher = false;
+
+	if (isTeacher) {
+		UE_LOG(LogTemp, Warning, TEXT("He is a teacher."));
+	}
+	else{
+		UE_LOG(LogTemp, Warning, TEXT("He is a teacher."));
+	}
+
+
 }
 
 // Called every frame
