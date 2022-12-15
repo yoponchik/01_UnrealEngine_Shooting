@@ -25,7 +25,22 @@ public:
 
 
 	//declare integer variables
-	int32 number;
+	int32 number1;
 	int32 number2;
+
+	//declare float variables
+	float float1 = 3.14f;
+	float float2 = 4.97f;
+
+	//declare string variables
+	FString string1 = "Yeo Won Park";
+	FString string2 = "Loser";
+
+	//declare boolean variables
+	bool isTeacher;					// same as bool isTeacher = false;
+	
+	bool isStudent = true;
+
+
 
 };
