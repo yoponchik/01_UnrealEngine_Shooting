@@ -26,7 +26,12 @@ void ACodeTest::BeginPlay()
 	//print value of variable number in console window
 	UE_LOG(LogTemp, Warning, TEXT("Number1 is %d, Number2 is %d"), number1, number2);
 	UE_LOG(LogTemp, Warning, TEXT("float1 is %.2f, float2 is %.2f"), float1, float2);
-	UE_LOG(LogTemp, Warning, TEXT("Hello World! %s"), *string1);
+	UE_LOG(LogTemp, Warning, TEXT("Hello World! %s"), *string1);						//string formating
+
+
+	//why do we declare it in the source file?
+	FString string3 = FString(TEXT("한국어"));
+	UE_LOG(LogTemp, Warning, TEXT("printing in Korean %s"), *string3);
 
 	isTeacher = false;
 
@@ -34,7 +39,7 @@ void ACodeTest::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("He is a teacher."));
 	}
 	else{
-		UE_LOG(LogTemp, Warning, TEXT("He is a teacher."));
+		UE_LOG(LogTemp, Warning, TEXT("He is a student."));
 	}
 
 
@@ -44,6 +49,5 @@ void ACodeTest::BeginPlay()
 void ACodeTest::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 

@@ -23,7 +23,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-
 	//declare integer variables
 	int32 number1;
 	int32 number2;
@@ -36,10 +35,37 @@ public:
 	FString string1 = "Yeo Won Park";
 	FString string2 = "Loser";
 
+
 	//declare boolean variables
 	bool isTeacher;					// same as bool isTeacher = false;
 	
 	bool isStudent = true;
+
+	//Editable Variables
+	UPROPERTY(EditAnywhere)
+	int32 editAnywhere;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 blueprintReadWrite;
+	UPROPERTY(EditDefaultsOnly)
+	int32 editDefaultsOnly;
+	UPROPERTY(EditInstanceOnly)
+	int32 editInstanceOnly;
+
+
+	//Read only varibles
+	UPROPERTY(VisibleAnywhere)
+	int32 visibleAnywhere;
+	UPROPERTY(VisibleDefaultsOnly)
+	int32 visibleDefaultsOnly;
+	UPROPERTY(VisibleInstanceOnly)
+	int32 visibleInstanceOnly;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int32 blueprintReadOnly;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CodeVariable)
+	int32 variableWithCodeVariable;
+
+
 
 
 
