@@ -65,7 +65,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CodeVariable)
 	int32 variableWithCodeVariable;
 
-
+	//Day 2 Functions
+	int32 Add(int32 number1, int32 number2);				//declaring function
 
 
 
