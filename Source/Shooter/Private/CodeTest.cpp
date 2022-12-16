@@ -46,8 +46,22 @@ void ACodeTest::BeginPlay()
 
 
 	//Day 2
-	int32 result = Add(8, 4);							//Declaring a local variable and assigning a return value from function
-	UE_LOG(LogTemp, Warning, TEXT("Result : %d"), result);
+	int32 additionResult = Add(8, 4);							//Declaring a local variable and assigning a return value from function
+	UE_LOG(LogTemp, Warning, TEXT("Addition : %d"), additionResult);
+
+	int32 subtractResult = Subtract(10, 2);
+	UE_LOG(LogTemp, Warning, TEXT("Subtraction : %d"), subtractResult);
+
+	int32 multResult = Multiply(1, 2);
+	UE_LOG(LogTemp, Warning, TEXT("Multiplication : %d"), multResult);
+	
+	int32 divResult = Divide(1, 2);
+	UE_LOG(LogTemp, Warning, TEXT("Division : %d"), divResult);
+
+	float divFloatResult = DivideToFraction(1, 2);
+	UE_LOG(LogTemp, Warning, TEXT("Result : %.2f"), divFloatResult);
+
+
 }
 
 // Called every frame
@@ -60,4 +74,25 @@ void ACodeTest::Tick(float DeltaTime)
 int32 ACodeTest::Add(int32 parameter1, int32 parameter2) {
 
 	return parameter1 + parameter2;
+}
+
+int32 ACodeTest::Subtract(int32 parameter1, int32 parameter2) {
+
+	return parameter1 - parameter2;
+}
+
+int32 ACodeTest::Multiply(int32 parameter1, int32 parameter2) {
+
+	return parameter1 * parameter2;
+}
+
+int32 ACodeTest::Divide(int32 parameter1, int32 parameter2) {
+
+	return parameter1 / parameter2;
+}
+
+float ACodeTest::DivideToFraction(int32 parameter1, int32 parameter2) {
+
+	return float(parameter1) / float(parameter2);
+
 }

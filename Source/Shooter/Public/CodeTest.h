@@ -67,5 +67,12 @@ public:
 
 	//Day 2 Functions
 	int32 Add(int32 parameter1, int32 parameter2);				//declaring function
+	
+	int32 Subtract(int32 parameter1, int32 parameter2);
 
+	int32 Multiply(int32 parameter1, int32 parameter2);
+
+	int32 Divide(int32 parameter1, int32 parameter2);
+
+	float DivideToFraction(int32 parameter1, int32 parameter2);
 };
