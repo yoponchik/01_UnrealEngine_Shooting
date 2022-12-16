@@ -50,7 +50,7 @@ void ACodeTest::BeginPlay()
 
 #pragma region Day 2.1 - Functions: Function Implementation
 	//Day 2 - Functions
-	//int32 additionResult = Add(8, 4);							//Declaring a local variable and assigning a return value from function
+	//int32 additionresult = add(8, 4);							//declaring a local variable and assigning a return value from function
 	//UE_LOG(LogTemp, Warning, TEXT("Addition : %d"), additionResult);
 
 	//int32 subtractResult = Subtract(10, 2);
@@ -73,26 +73,26 @@ void ACodeTest::BeginPlay()
 	//age = 20;
 
 	//if (age > 26) {
-	//	UE_LOG(LogTemp, Warning, TEXT("Too Old"));
+	//	ue_log(logtemp, warning, text("too old"));
 	//}
 	//else if (age == 26){
-	//	UE_LOG(LogTemp, Warning, TEXT("Perfect"));
+	//	ue_log(logtemp, warning, text("perfect"));
 	//}
 	//else {
-	//	UE_LOG(LogTemp, Warning, TEXT("Too Young"));
+	//	ue_log(logtemp, warning, text("too young"));
 	//}
 
-	//Using logical conditions
+	//using logical conditions
 
 	//age = 26;
 	//height = 166;
 
 	//if (age >= 20 && height >= 160) {
 
-	//	UE_LOG(LogTemp, Warning, TEXT("Welcome"));
+	//	ue_log(logtemp, warning, text("welcome"));
 	//}
 	//else {
-	//	UE_LOG(LogTemp, Warning, TEXT("Get out of here."));
+	//	ue_log(logtemp, warning, text("get out of here."));
 	//}
 
 	age = 26;
@@ -104,6 +104,7 @@ void ACodeTest::BeginPlay()
 	else{
 		UE_LOG(LogTemp, Warning, TEXT("Not Korean Young Adult"));
 	}
+
 
 #pragma endregion Day 2.2 - Conditionals: Implementation
 
