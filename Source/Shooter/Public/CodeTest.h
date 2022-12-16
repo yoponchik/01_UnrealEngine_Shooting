@@ -23,56 +23,80 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	//declare integer variables
-	int32 number1;
-	int32 number2;
+#pragma region Day 1 - Variables
 
-	//declare float variables
-	float float1 = 3.14f;
-	float float2 = 4.97f;
+	//Day 1 - Variables
 
-	//declare string variables
-	FString string1 = "Yeo Won Park";
-	FString string2 = "Loser";
+	////declare integer variables
+	//int32 number1;
+	//int32 number2;
 
+	////declare float variables
+	//float float1 = 3.14f;
+	//float float2 = 4.97f;
 
-	//declare boolean variables
-	bool isTeacher;					// same as bool isTeacher = false;
-	
-	bool isStudent = true;
-
-	//Editable Variables
-	UPROPERTY(EditAnywhere)
-	int32 editAnywhere;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 blueprintReadWrite;
-	UPROPERTY(EditDefaultsOnly)
-	int32 editDefaultsOnly;
-	UPROPERTY(EditInstanceOnly)
-	int32 editInstanceOnly;
+	////declare string variables
+	//FString string1 = "Yeo Won Park";
+	//FString string2 = "Loser";
 
 
-	//Read only varibles
-	UPROPERTY(VisibleAnywhere)
-	int32 visibleAnywhere;
-	UPROPERTY(VisibleDefaultsOnly)
-	int32 visibleDefaultsOnly;
-	UPROPERTY(VisibleInstanceOnly)
-	int32 visibleInstanceOnly;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 blueprintReadOnly;
+	////declare boolean variables
+	//bool isTeacher;					// same as bool isTeacher = false;
+	//
+	//bool isStudent = true;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CodeVariable)
-	int32 variableWithCodeVariable;
+	////Editable Variables
+	//UPROPERTY(EditAnywhere)
+	//int32 editAnywhere;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//int32 blueprintReadWrite;
+	//UPROPERTY(EditDefaultsOnly)
+	//int32 editDefaultsOnly;
+	//UPROPERTY(EditInstanceOnly)
+	//int32 editInstanceOnly;
 
-	//Day 2 Functions
-	int32 Add(int32 parameter1, int32 parameter2);				//declaring function
-	
-	int32 Subtract(int32 parameter1, int32 parameter2);
 
-	int32 Multiply(int32 parameter1, int32 parameter2);
+	////Read only varibles
+	//UPROPERTY(VisibleAnywhere)
+	//int32 visibleAnywhere;
+	//UPROPERTY(VisibleDefaultsOnly)
+	//int32 visibleDefaultsOnly;
+	//UPROPERTY(VisibleInstanceOnly)
+	//int32 visibleInstanceOnly;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	//int32 blueprintReadOnly;
 
-	int32 Divide(int32 parameter1, int32 parameter2);
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CodeVariable)
+	//int32 variableWithCodeVariable;
+#pragma endregion Day 1 - Variables
 
-	float DivideToFraction(int32 parameter1, int32 parameter2);
+#pragma region Day 2.1 - Functions: Declaration
+
+	//Day 2.1 - Functions
+
+	//int32 Add(int32 parameter1, int32 parameter2);				//declaring function
+	//
+	//int32 Subtract(int32 parameter1, int32 parameter2);
+
+	//int32 Multiply(int32 parameter1, int32 parameter2);
+
+	//int32 Divide(int32 parameter1, int32 parameter2);
+
+	//float DivideToFraction(int32 parameter1, int32 parameter2);
+
+#pragma endregion Day 2.1 - Functions: Declaration
+
+
+#pragma region Day 2.2 - Conditionals: Declaration
+	//Day 2.2 - Conditionals
+	UPROPERTY(EditAnywhere, Category = CodeVariable)
+	int32 age;
+
+	UPROPERTY(EditAnywhere, Category = CodeVariable)
+	int32 height;
+
+	UPROPERTY(EditAnywhere, Category = CodeVariable)
+	FString nationality;
+#pragma endregion Day 2.2 - Conditionals: Declaration
+
 };
