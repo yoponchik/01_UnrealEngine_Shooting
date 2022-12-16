@@ -16,7 +16,8 @@ void ACodeTest::BeginPlay()
 {
 	Super::BeginPlay();
 
-
+	//Day1
+	/*
 	//assign variable number with integer 3
 	number1 = 3;
 
@@ -27,7 +28,7 @@ void ACodeTest::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("Number1 is %d, Number2 is %d"), number1, number2);
 	UE_LOG(LogTemp, Warning, TEXT("float1 is %.2f, float2 is %.2f"), float1, float2);
 	UE_LOG(LogTemp, Warning, TEXT("Hello World! %s"), *string1);						//string formating
-
+	
 
 	//why do we declare it in the source file?
 	FString string3 = FString(TEXT("한국어"));
@@ -41,8 +42,12 @@ void ACodeTest::BeginPlay()
 	else{
 		UE_LOG(LogTemp, Warning, TEXT("He is a student."));
 	}
+	*/
 
 
+	//Day 2
+	int32 result = Add(8, 4);							//Declaring a local variable and assigning a return value from function
+	UE_LOG(LogTemp, Warning, TEXT("Result : %d"), result);
 }
 
 // Called every frame
@@ -51,3 +56,8 @@ void ACodeTest::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+//Day 2
+int32 ACodeTest::Add(int32 parameter1, int32 parameter2) {
+
+	return parameter1 + parameter2;
+}

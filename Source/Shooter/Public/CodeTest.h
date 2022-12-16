@@ -66,8 +66,6 @@ public:
 	int32 variableWithCodeVariable;
 
 	//Day 2 Functions
-	int32 Add(int32 number1, int32 number2);				//declaring function
-
-
+	int32 Add(int32 parameter1, int32 parameter2);				//declaring function
 
 };
