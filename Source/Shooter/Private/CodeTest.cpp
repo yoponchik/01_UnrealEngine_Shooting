@@ -3,6 +3,9 @@
 
 #include "CodeTest.h"
 
+#pragma warning (disable: 4458)				//disabling error C4458
+
+
 // Sets default values
 ACodeTest::ACodeTest()
 {
@@ -131,12 +134,14 @@ void ACodeTest::BeginPlay()
 
 #pragma region Loops: Loop Implementation
 
+
+	//Numbering 1 to 9
 	//for (int32 i = 0; i < 10; i++) {						//i + 1 after going the next line
 	////for (int32 i = 0; i < 10; ++i) {						//i + 1 before going to the next line
 	//	UE_LOG(LogTemp, Warning, TEXT("%d"), i);
 	//}
 
-
+	//Calling Multiplication Function
 	Multiplication(7);
 
 

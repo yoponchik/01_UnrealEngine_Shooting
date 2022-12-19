@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "CodeTest.generated.h"
 
+
 UCLASS()
 class SHOOTER_API ACodeTest : public AActor
 {
@@ -107,6 +108,6 @@ public:
 
 
 #pragma region Day 3 - Loops: Loop Declaration
-	void Multiplication(int32 multiplier);
+	//void Multiplication(int32 multiplier);
 #pragma endregion Day 3 - Loops: Loop Declaration
 };
