@@ -116,19 +116,45 @@ void ACodeTest::BeginPlay()
 
 	//Check if odd or even
 
-	int32 checker =123;
+	//int32 checker =123;
 
-	if ((checker % 2) == 0) {
-		UE_LOG(LogTemp, Warning, TEXT("Even"));
-	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("Odd"));
-	}
+	//if ((checker % 2) == 0) {
+	//	UE_LOG(LogTemp, Warning, TEXT("Even"));
+	//}
+	//else {
+	//	UE_LOG(LogTemp, Warning, TEXT("Odd"));
+	//}
 
 
 #pragma endregion Day 2.2 - Conditionals: Implementation
 
+
+#pragma region Loops: Loop Implementation
+
+	//for (int32 i = 0; i < 10; i++) {						//i + 1 after going the next line
+	////for (int32 i = 0; i < 10; ++i) {						//i + 1 before going to the next line
+	//	UE_LOG(LogTemp, Warning, TEXT("%d"), i);
+	//}
+
+
+	Multiplication(7);
+
+
+#pragma endregion Loops: Loop Implementation
+
+
 }
+
+#pragma region Loops: Loop Definition
+void ACodeTest::Multiplication(int32 multiplier) {
+	for (int32 i = 2; i < 10; i++) {
+		for (int32 j = 1; j < 10; j++) {
+			UE_LOG(LogTemp, Warning, TEXT("%d x %d = %d"), i, j, i * j);
+		}
+		UE_LOG(LogTemp, Warning, TEXT("=========================="));
+	}
+}
+#pragma endregion Loops: Loop Definition
 
 // Called every frame
 void ACodeTest::Tick(float DeltaTime)

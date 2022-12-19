@@ -92,7 +92,6 @@ public:
 
 #pragma endregion Day 2.1 - Functions: Declaration
 
-
 #pragma region Day 2.2 - Conditionals: Declaration
 	//Day 2.2 - Conditionals
 	//UPROPERTY(EditAnywhere, Category = CodeVariable)
@@ -106,4 +105,8 @@ public:
 
 #pragma endregion Day 2.2 - Conditionals: Declaration
 
+
+#pragma region Day 3 - Loops: Loop Declaration
+	void Multiplication(int32 multiplier);
+#pragma endregion Day 3 - Loops: Loop Declaration
 };
