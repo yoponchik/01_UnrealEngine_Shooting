@@ -84,19 +84,26 @@ public:
 
 	//float DivideToFraction(int32 parameter1, int32 parameter2);
 
+	//UFUNCTION(BlueprintPure)
+	//FString AppendString(FString firstName, FString lastName);
+
+
+
+
 #pragma endregion Day 2.1 - Functions: Declaration
 
 
 #pragma region Day 2.2 - Conditionals: Declaration
 	//Day 2.2 - Conditionals
-	UPROPERTY(EditAnywhere, Category = CodeVariable)
-	int32 age;
+	//UPROPERTY(EditAnywhere, Category = CodeVariable)
+	//int32 age;
 
-	UPROPERTY(EditAnywhere, Category = CodeVariable)
-	int32 height;
+	//UPROPERTY(EditAnywhere, Category = CodeVariable)
+	//int32 height;
 
-	UPROPERTY(EditAnywhere, Category = CodeVariable)
-	FString nationality;
+	//UPROPERTY(EditAnywhere, Category = CodeVariable)
+	//FString nationality;
+
 #pragma endregion Day 2.2 - Conditionals: Declaration
 
 };

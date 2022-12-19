@@ -64,10 +64,15 @@ void ACodeTest::BeginPlay()
 
 	//float divFloatResult = DivideToFraction(1, 2);
 	//UE_LOG(LogTemp, Warning, TEXT("Result : %.2f"), divFloatResult);					//note that this has %f
-	//
+
+	//FString fullName = AppendString("Yeo Won", "Park");
+	//UE_LOG(LogTemp, Warning, TEXT("Your name is: %s"), *fullName);
+
 #pragma endregion Day 2.1 - Functions: Function Implementation
 
 #pragma region Day 2.2 - Conditionals: Implementation
+
+	//Check Age
 
 	//if, else if, else
 	//age = 20;
@@ -95,14 +100,29 @@ void ACodeTest::BeginPlay()
 	//	ue_log(logtemp, warning, text("get out of here."));
 	//}
 
-	age = 26;
-	nationality = "Korean";
 
-	if (nationality == "Korean" && ((20 <= age) && (age < 40))) {
-		UE_LOG(LogTemp, Warning, TEXT("Korean Young Adult"));
+	//Check Nationality
+
+	//age = 26;
+	//nationality = "Korean";
+
+	//if (nationality == "Korean" && ((20 <= age) && (age < 40))) {
+	//	UE_LOG(LogTemp, Warning, TEXT("Korean Young Adult"));
+	//}
+	//else{
+	//	UE_LOG(LogTemp, Warning, TEXT("Not Korean Young Adult"));
+	//}
+
+
+	//Check if odd or even
+
+	int32 checker =123;
+
+	if ((checker % 2) == 0) {
+		UE_LOG(LogTemp, Warning, TEXT("Even"));
 	}
-	else{
-		UE_LOG(LogTemp, Warning, TEXT("Not Korean Young Adult"));
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Odd"));
 	}
 
 
@@ -143,4 +163,14 @@ void ACodeTest::Tick(float DeltaTime)
 //	return float(parameter1) / float(parameter2);
 
 //}
+
+
+//FString ACodeTest::AppendString(FString firstName, FString lastName) {
+//	
+//	FString fullName;
+//	fullName = firstName + " " + lastName;
+//
+//	return fullName;
+//}
 #pragma endregion Day 2 - Functions: Function Definition
+
