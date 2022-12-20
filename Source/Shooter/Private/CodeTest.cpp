@@ -2,6 +2,8 @@
 
 
 #include "CodeTest.h"
+#include "PointerCode.h"
+
 
 #pragma warning (disable: 4458)				//disabling error C4458
 
@@ -49,7 +51,7 @@ void ACodeTest::BeginPlay()
 	}
 	*/
 
-#pragma endregion Day 1 - Variables
+#pragma endregion 
 
 #pragma region Day 2.1 - Functions: Function Implementation
 	//Day 2 - Functions
@@ -131,8 +133,7 @@ void ACodeTest::BeginPlay()
 
 #pragma endregion Day 2.2 - Conditionals: Implementation
 
-
-#pragma region Loops: Loop Implementation
+#pragma region Day 3 - Loops: Loop Implementation
 
 
 	//Numbering 1 to 9
@@ -142,24 +143,83 @@ void ACodeTest::BeginPlay()
 	//}
 
 	//Calling Multiplication Function
-	Multiplication(7);
+	/*Multiplication(7);*/
 
 
-#pragma endregion Loops: Loop Implementation
+#pragma endregion 
+
+#pragma region Day 4.1 - Arrays and Maps: Implementation
+	//Arrays
+	//UE_LOG(LogTemp, Warning, TEXT("The length of the array is: %d"), ages.Num());
+
+	//for (int32 i = 0; i < ages.Num(); i++) {
+	//	UE_LOG(LogTemp, Warning, TEXT("%d"), ages[i]);
+	//}
+
+	//sort of like foreach val??
+	//for (int32 age: ages) {								//ages goes into age, maybe like foreach?
+	//	UE_LOG(LogTemp, Warning, TEXT("%d"), age);
+	//}
+
+	//Maps
+
+	//distances.Add(TEXT("Seoul"), 250.5f);						//can do without Text, it's just in case it's Korean
+	//distances.Add("Seoul", 250.5f);
+	//distances.Add("Incheon", 345.5f);
+	//distances.Add("Suwon", 999.5f);
+
+	//FString myKey = TEXT("Incheon");
+
+	//UE_LOG(LogTemp, Warning, TEXT("%s : %f"), *myKey, distances[myKey]);				//for finding specific value with specific key
+
+	//showing all values and keys
+	//for (auto dist : distances) {				//auto helps us find the value type automatically
+	//	UE_LOG(LogTemp, Warning, TEXT("%s - %f"), *dist.Key, dist.Value);
+	//}
+
+#pragma endregion
+
+#pragma region Day 4.2 - Pointers: Implementation
+
+//Call by value
+
+int32 num1 = 10;
+int32 copyNum1 = num1;
+int32 num = 30;
+
+UE_LOG(LogTemp, Warning, TEXT("num1: %d, copyNum1: %d"), num1, copyNum1);
 
 
-}
+//Call by Reference
+//pointer
+int32 num2 = 10;
+int32* copyNum2;			//pointer
+copyNum2 = &num2;
+num1 = 30;
 
-#pragma region Loops: Loop Definition
-void ACodeTest::Multiplication(int32 multiplier) {
-	for (int32 i = 2; i < 10; i++) {
-		for (int32 j = 1; j < 10; j++) {
-			UE_LOG(LogTemp, Warning, TEXT("%d x %d = %d"), i, j, i * j);
-		}
-		UE_LOG(LogTemp, Warning, TEXT("=========================="));
+//UE_LOG(LogTemp, Warning, TEXT("Address of num2: %p"), num2, copyNum2);
+UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), &num2, *copyNum2);
+UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), num2, copyNum2);
+
+#pragma endregion
+
+	pointerCode->pointerNumber = 15; 							//arrow means you want to access the variable inside the class
+	//type period "." to automatically do arrow
+
+	for (APointerCode* pt : pointerArray) {
+		pt->pointerNumber = 15;
 	}
+
+	*(pointerCode->myAge) = 15;
+	pointerCode->realAge = 15;
 }
-#pragma endregion Loops: Loop Definition
+
+
+
+
+
+
+
 
 // Called every frame
 void ACodeTest::Tick(float DeltaTime)
@@ -169,11 +229,12 @@ void ACodeTest::Tick(float DeltaTime)
 
 #pragma region Day 2.1 - Functions: Function Definition
 //Day 2
-//int32 ACodeTest::Add(int32 parameter1, int32 parameter2) {
-//
-//	return parameter1 + parameter2;
-//}
-//
+int32 ACodeTest::Add(int32 parameter1, int32 parameter2) {
+
+	return parameter1 + parameter2;
+}
+
+
 //int32 ACodeTest::Subtract(int32 parameter1, int32 parameter2) {
 //
 //	return parameter1 - parameter2;
@@ -203,5 +264,16 @@ void ACodeTest::Tick(float DeltaTime)
 //
 //	return fullName;
 //}
-#pragma endregion Day 2 - Functions: Function Definition
+#pragma endregion
+
+#pragma region Day 3 - Loops: Loop Definition
+//void ACodeTest::Multiplication(int32 multiplier) {
+//	for (int32 i = 2; i < 10; i++) {
+//		for (int32 j = 1; j < 10; j++) {
+//			UE_LOG(LogTemp, Warning, TEXT("%d x %d = %d"), i, j, i * j);
+//		}
+//		UE_LOG(LogTemp, Warning, TEXT("=========================="));
+//	}
+//}
+#pragma endregion 
 

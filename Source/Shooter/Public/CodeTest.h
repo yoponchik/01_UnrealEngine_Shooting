@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "PointerCode.h"		//have to put this before the original header file.
 #include "CodeTest.generated.h"
 
 
@@ -69,14 +70,14 @@ public:
 
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CodeVariable)
 	//int32 variableWithCodeVariable;
-#pragma endregion Day 1 - Variables
+#pragma endregion
 
 #pragma region Day 2.1 - Functions: Declaration
 
 	//Day 2.1 - Functions
 
-	//int32 Add(int32 parameter1, int32 parameter2);				//declaring function
-	//
+	int32 Add(int32 parameter1, int32 parameter2);				//declaring function
+	
 	//int32 Subtract(int32 parameter1, int32 parameter2);
 
 	//int32 Multiply(int32 parameter1, int32 parameter2);
@@ -91,7 +92,7 @@ public:
 
 
 
-#pragma endregion Day 2.1 - Functions: Declaration
+#pragma endregion 
 
 #pragma region Day 2.2 - Conditionals: Declaration
 	//Day 2.2 - Conditionals
@@ -104,10 +105,31 @@ public:
 	//UPROPERTY(EditAnywhere, Category = CodeVariable)
 	//FString nationality;
 
-#pragma endregion Day 2.2 - Conditionals: Declaration
-
+#pragma endregion 
 
 #pragma region Day 3 - Loops: Loop Declaration
 	//void Multiplication(int32 multiplier);
-#pragma endregion Day 3 - Loops: Loop Declaration
+#pragma endregion 
+
+#pragma region Day 4.1 - Arrays and Maps: Implementation
+
+	////Array
+	//UPROPERTY(EditAnywhere, Category = "CodeVariable")
+	//TArray<int32> ages;
+
+	////Map
+	//UPROPERTY(EditAnywhere, Category = "CodeVariable")
+	//TMap<FString, float> distances;
+
+#pragma endregion 
+
+	int32 AddUsingPointers(int32* num1, int32* num2);
+
+//pointertest
+	UPROPERTY(EditAnywhere, Category = CodeVariable)
+	class APointerCode* pointerCode;
+	
+	UPROPERTY(EditAnywhere, Category = CodeVariable)
+	TArray<class APointerCode*> pointerArray;
+
 };
