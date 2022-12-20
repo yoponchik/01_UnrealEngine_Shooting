@@ -125,11 +125,13 @@ public:
 
 	int32 AddUsingPointers(int32* num1, int32* num2);
 
+#pragma region Day 4.3 - Pointers Practice: Implementation
 //pointertest
 	UPROPERTY(EditAnywhere, Category = CodeVariable)
 	class APointerCode* pointerCode;
-	
-	UPROPERTY(EditAnywhere, Category = CodeVariable)
-	TArray<class APointerCode*> pointerArray;
+// 	
+// 	UPROPERTY(EditAnywhere, Category = CodeVariable)
+// 	TArray<class APointerCode*> pointerArray;
+#pragma endregion
 
 };

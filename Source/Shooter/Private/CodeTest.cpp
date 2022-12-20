@@ -13,7 +13,6 @@ ACodeTest::ACodeTest()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
@@ -183,35 +182,44 @@ void ACodeTest::BeginPlay()
 
 //Call by value
 
-int32 num1 = 10;
-int32 copyNum1 = num1;
-int32 num = 30;
+	int32 num1 = 10;
+	int32 copyNum1 = num1;
+	int32 num = 30;
 
-UE_LOG(LogTemp, Warning, TEXT("num1: %d, copyNum1: %d"), num1, copyNum1);
+	UE_LOG(LogTemp, Warning, TEXT("num1: %d, copyNum1: %d"), num1, copyNum1);
 
 
-//Call by Reference
-//pointer
-int32 num2 = 10;
-int32* copyNum2;			//pointer
-copyNum2 = &num2;
-num1 = 30;
+	//Call by Reference
+	//pointer
+	int32 num2 = 10;
+	int32* copyNum2;			//pointer
+	copyNum2 = &num2;
+	num1 = 30;
 
-//UE_LOG(LogTemp, Warning, TEXT("Address of num2: %p"), num2, copyNum2);
-UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), &num2, *copyNum2);
-UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), num2, copyNum2);
+	//UE_LOG(LogTemp, Warning, TEXT("Address of num2: %p"), num2, copyNum2);
+	UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), &num2, *copyNum2);
+	UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), num2, copyNum2);
 
 #pragma endregion
 
-	pointerCode->pointerNumber = 15; 							//arrow means you want to access the variable inside the class
-	//type period "." to automatically do arrow
+#pragma region Day 4.3 - Pointers Practice: Implementation
+// 	pointerCode->pointerNumber = 15; 							//arrow means you want to access the variable inside the class
+// 	//type period "." to automatically do arrow
+// 
+// 	for (APointerCode* pt : pointerArray) {
+// 		pt->pointerNumber = 15;
+// 	}
+// 
+// 	*(pointerCode->myAge) = 15;
+// 	pointerCode->realAge = 15;
 
-	for (APointerCode* pt : pointerArray) {
-		pt->pointerNumber = 15;
+	if (pointerCode != nullptr) {
+		*(pointerCode->myAge) = 15
 	}
 
-	*(pointerCode->myAge) = 15;
-	pointerCode->realAge = 15;
+#pragma endregion 
+
+
 }
 
 

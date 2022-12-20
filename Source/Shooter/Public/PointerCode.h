@@ -23,13 +23,14 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+#pragma region Day 4.3 - Pointers Practice: Implementation
 	//Variables
-	UPROPERTY(EditAnywhere)
-	int32 pointerNumber = 30;
-
+// 	UPROPERTY(EditAnywhere)
+// 	int32 pointerNumber = 30;
+// 
 	//UPROPERTY(EditAnywhere)				//can't make a pointer a uproperty
 	float* myAge;
-	UPROPERTY(EditAnywhere)
-	float realAge = 20;
-
+// 	UPROPERTY(EditAnywhere)
+// 	float realAge = 20;
+#pragma endregion
 };
