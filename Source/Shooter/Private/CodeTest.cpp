@@ -213,13 +213,11 @@ void ACodeTest::BeginPlay()
 // 	*(pointerCode->myAge) = 15;
 // 	pointerCode->realAge = 15;
 
-	if (pointerCode != nullptr) {
-		*(pointerCode->myAge) = 15
-	}
+	//if (pointerCode != nullptr) {
+	//	*(pointerCode->myAge) = 15
+	//}
 
 #pragma endregion 
-
-
 }
 
 

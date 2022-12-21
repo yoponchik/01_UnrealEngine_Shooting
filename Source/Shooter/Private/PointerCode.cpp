@@ -10,7 +10,7 @@ APointerCode::APointerCode()
 	PrimaryActorTick.bCanEverTick = true;
 
 #pragma region 	Day 4.3 - Pointers Practice : Implementation
-	myAge = &realAge;
+	//myAge = &realAge;
 #pragma endregion
 
 
