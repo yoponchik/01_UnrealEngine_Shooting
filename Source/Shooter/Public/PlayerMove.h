@@ -26,4 +26,24 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+#pragma region Declare Variables for Component Classes
+
+	//building a component
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = PlayerSettings)
+		class UBoxComponent* boxComp;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = PlayerSettings)
+		class UStaticMeshComponent* meshComp;
+
+#pragma endregion
+
+private:
+#pragma region Input Functions
+	void Horizontal(float value);
+	void Vertical(float value);
+
+	float hori;
+	float verti;
+#pragma endregion
+
 };
