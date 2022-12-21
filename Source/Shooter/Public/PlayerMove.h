@@ -37,13 +37,24 @@ public:
 
 #pragma endregion
 
+	//PlayerMovement
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	float moveSpeed = 500;
+
+	//Player Fire
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	TSubclassOf<class ABullet> bulletFactory;
+
 private:
-#pragma region Input Functions
+	//PlayerMovement
 	void Horizontal(float value);
 	void Vertical(float value);
-
+	
 	float hori;
 	float verti;
-#pragma endregion
 
+	FVector direction;
+
+	//Player Fire
+	void FireBullet();
 };

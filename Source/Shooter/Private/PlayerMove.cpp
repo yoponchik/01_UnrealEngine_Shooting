@@ -4,12 +4,16 @@
 #include "PlayerMove.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
-
+#include "UObject/ConstructorHelpers.h"
+#include "Bullet.h"
 // Sets default values
 APlayerMove::APlayerMove()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+#pragma region Initialize Colliders Meshes
+
 
 	//Initialize Collision Component
 	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
@@ -36,6 +40,7 @@ APlayerMove::APlayerMove()
 	if (cubeMesh.Succeeded()) {
 		meshComp->SetStaticMesh(cubeMesh.Object);
 	}
+#pragma endregion
 
 }
 
@@ -51,8 +56,16 @@ void APlayerMove::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+#pragma region PlayerMovement
+	//P = P0 + vt
+	direction.Normalize();
+	FVector dir = GetActorLocation() + direction * moveSpeed * DeltaTime;
+	SetActorLocation(dir);
+#pragma endregion
+
 }
 
+#pragma region Input Functions
 // Called to bind functionality to input
 void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -63,18 +76,36 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	//Bind input functions to vertical axis
 	PlayerInputComponent->BindAxis("Vertical", this, &APlayerMove::Vertical);
+
+	//Bind input function to action input
+	PlayerInputComponent->BindAction("Fire",IE_Pressed, this, &APlayerMove::FireBullet);
 }
 
-#pragma region Input Functions
+
 
 void APlayerMove::Horizontal(float value) {
 	hori = value;
-	UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
+	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
 
+	direction.Y = hori;
 }
 
 void APlayerMove::Vertical(float value) {
 	verti = value;
-	UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), verti);
+	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), verti);
+	direction.Z = verti;
+}
+
+
+void APlayerMove::FireBullet()
+{
+	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
+
+	FRotator spawnRotator = FRotator(90, 0, 0);
+	FActorSpawnParameters param;
+	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
+
+	//Create bullet
+	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
 }
 #pragma endregion
