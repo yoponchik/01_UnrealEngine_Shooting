@@ -182,23 +182,23 @@ void ACodeTest::BeginPlay()
 
 //Call by value
 
-	int32 num1 = 10;
-	int32 copyNum1 = num1;
-	int32 num = 30;
+	//int32 num1 = 10;
+	//int32 copyNum1 = num1;
+	//int32 num = 30;
 
-	UE_LOG(LogTemp, Warning, TEXT("num1: %d, copyNum1: %d"), num1, copyNum1);
+	//UE_LOG(LogTemp, Warning, TEXT("num1: %d, copyNum1: %d"), num1, copyNum1);
 
 
-	//Call by Reference
-	//pointer
-	int32 num2 = 10;
-	int32* copyNum2;			//pointer
-	copyNum2 = &num2;
-	num1 = 30;
+	////Call by Reference
+	////pointer
+	//int32 num2 = 10;
+	//int32* copyNum2;			//pointer
+	//copyNum2 = &num2;
+	//num1 = 30;
 
-	//UE_LOG(LogTemp, Warning, TEXT("Address of num2: %p"), num2, copyNum2);
-	UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), &num2, *copyNum2);
-	UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), num2, copyNum2);
+	////UE_LOG(LogTemp, Warning, TEXT("Address of num2: %p"), num2, copyNum2);
+	//UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), &num2, *copyNum2);
+	//UE_LOG(LogTemp, Warning, TEXT("num2: %p, copyNum2: %p"), num2, copyNum2);
 
 #pragma endregion
 
@@ -235,10 +235,10 @@ void ACodeTest::Tick(float DeltaTime)
 
 #pragma region Day 2.1 - Functions: Function Definition
 //Day 2
-int32 ACodeTest::Add(int32 parameter1, int32 parameter2) {
-
-	return parameter1 + parameter2;
-}
+//int32 ACodeTest::Add(int32 parameter1, int32 parameter2) {
+//
+//	return parameter1 + parameter2;
+//}
 
 
 //int32 ACodeTest::Subtract(int32 parameter1, int32 parameter2) {

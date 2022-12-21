@@ -76,7 +76,7 @@ public:
 
 	//Day 2.1 - Functions
 
-	int32 Add(int32 parameter1, int32 parameter2);				//declaring function
+	//int32 Add(int32 parameter1, int32 parameter2);				//declaring function
 	
 	//int32 Subtract(int32 parameter1, int32 parameter2);
 
@@ -123,12 +123,12 @@ public:
 
 #pragma endregion 
 
-	int32 AddUsingPointers(int32* num1, int32* num2);
+	//int32 AddUsingPointers(int32* num1, int32* num2);
 
 #pragma region Day 4.3 - Pointers Practice: Implementation
 //pointertest
-	UPROPERTY(EditAnywhere, Category = CodeVariable)
-	class APointerCode* pointerCode;
+	//UPROPERTY(EditAnywhere, Category = CodeVariable)
+	//class APointerCode* pointerCode;
 // 	
 // 	UPROPERTY(EditAnywhere, Category = CodeVariable)
 // 	TArray<class APointerCode*> pointerArray;
