@@ -12,6 +12,7 @@ AEnemySpawn::AEnemySpawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	rootScene = CreateDefaultSubobject<USceneComponent>(TEXT("Root Scene"));
+	SetRootComponent(rootScene);
 
 	spawnArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("Spawn Arrow"));
 	spawnArrow->SetupAttachment(RootComponent);
