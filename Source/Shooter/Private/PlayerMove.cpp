@@ -6,6 +6,18 @@
 #include "Components/StaticMeshComponent.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Bullet.h"
+#include "GameFramework/Controller.h"
+
+#include "Components/InputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/Controller.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "EnhancedInput/Public/EnhancedInputSubsystems.h"
+#include "EnhancedInput/Public/InputMappingContext.h"
+#include "EnhancedInput/Public/EnhancedInputComponent.h"
+#include "EnhancedInput/Public/InputActionValue.h"
+#include "MyInputConfigData.h"
+
 // Sets default values
 APlayerMove::APlayerMove()
 {
@@ -13,7 +25,6 @@ APlayerMove::APlayerMove()
 	PrimaryActorTick.bCanEverTick = true;
 
 #pragma region Initialize Colliders Meshes
-
 
 	//Initialize Collision Component
 	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
@@ -41,14 +52,27 @@ APlayerMove::APlayerMove()
 		meshComp->SetStaticMesh(cubeMesh.Object);
 	}
 #pragma endregion
-
 }
 
 // Called when the game starts or when spawned
 void APlayerMove::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	//1st BP Graph
+	//Cast(change the data type) the Player Controller.
+	APlayerController* playerCon = Cast<APlayerController>(Controller());
+
+	//2nd BP Graph
+	//if assigned properly
+	if (playerCon != nullptr) {
+		UEnhancedInputLocalPlayerSubsystem* subsystem = ULocalPlayer::GetSubsystem(playerCon->GetLocalPlayer());
+	}
+
+	//3rd BP Graph
+	if (subsystem != nullptr) {
+		subsystem->AddMappingContext(iMCMyMapping, 0);
+	}
 }
 
 // Called every frame
@@ -62,27 +86,28 @@ void APlayerMove::Tick(float DeltaTime)
 	FVector dir = GetActorLocation() + direction * moveSpeed * DeltaTime;
 	SetActorLocation(dir);
 #pragma endregion
-
 }
 
-#pragma region Input Functions
 // Called to bind functionality to input
 void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	//Bind input functions to horizontal axis
-	PlayerInputComponent->BindAxis("Horizontal", this, &APlayerMove::Horizontal);
+#pragma region Old Input
+	////Bind input functions to horizontal axis
+	//PlayerInputComponent->BindAxis("Horizontal", this, &APlayerMove::Horizontal);
 
-	//Bind input functions to vertical axis
-	PlayerInputComponent->BindAxis("Vertical", this, &APlayerMove::Vertical);
+	////Bind input functions to vertical axis
+	//PlayerInputComponent->BindAxis("Vertical", this, &APlayerMove::Vertical);
 
-	//Bind input function to action input
-	PlayerInputComponent->BindAction("Fire",IE_Pressed, this, &APlayerMove::FireBullet);
+	////Bind input function to action input
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerMove::FireBullet);
+#pragma endregion
+
 }
 
-
-
+#pragma region Input Functions
+//Axis
 void APlayerMove::Horizontal(float value) {
 	hori = value;
 	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
@@ -96,16 +121,20 @@ void APlayerMove::Vertical(float value) {
 	direction.Z = verti;
 }
 
-
+//Action
 void APlayerMove::FireBullet()
 {
+	//set spawn position
 	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
-
+	
+	//set spawn rotation 
 	FRotator spawnRotator = FRotator(90, 0, 0);
+
+	//set spawn parameters
 	FActorSpawnParameters param;
 	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
 
-	//Create bullet
+	//spawn bullet at the position, orientation with the set parameters
 	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
 }
 #pragma endregion

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "PlayerMove.generated.h"
+//#include "EnhancedInput.h"
 
 UCLASS()
 class SHOOTER_API APlayerMove : public APawn
@@ -45,9 +46,24 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	TSubclassOf<class ABullet> bulletFactory;
 
+	//Input Actions :Enhanced Inputs
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputAction* iAHorizontal;	
+
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputAction* iAVertical;	
+
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputAction* iAFire;
+
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputMappingContext* iMCMyMapping;
+
 private:
 	//PlayerMovement
+	UFUNCTION(BlueprintCallable)
 	void Horizontal(float value);
+	UFUNCTION(BlueprintCallable)
 	void Vertical(float value);
 	
 	float hori;
@@ -56,5 +72,6 @@ private:
 	FVector direction;
 
 	//Player Fire
+	UFUNCTION(BlueprintCallable)
 	void FireBullet();
 };
