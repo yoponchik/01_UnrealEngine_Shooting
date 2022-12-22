@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "InputActionValue.h"				//has to be above generated.h
 #include "PlayerMove.generated.h"
-//#include "EnhancedInput.h"
+
 
 UCLASS()
 class SHOOTER_API APlayerMove : public APawn
@@ -61,8 +62,15 @@ public:
 
 private:
 	//PlayerMovement
+	
+	//Original Horizontal function
+	//UFUNCTION(BlueprintCallable)
+	//void Horizontal(float value);//comment to prevent overloading
+
+	//Enhanced Horizontal function
 	UFUNCTION(BlueprintCallable)
-	void Horizontal(float value);
+	void Horizontal(const FInputActionValue& value);			
+
 	UFUNCTION(BlueprintCallable)
 	void Vertical(float value);
 	

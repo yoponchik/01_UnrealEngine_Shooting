@@ -7,16 +7,11 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Bullet.h"
 #include "GameFramework/Controller.h"
+#include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
 
-#include "Components/InputComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/Controller.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "EnhancedInput/Public/EnhancedInputSubsystems.h"
-#include "EnhancedInput/Public/InputMappingContext.h"
-#include "EnhancedInput/Public/EnhancedInputComponent.h"
-#include "EnhancedInput/Public/InputActionValue.h"
-#include "MyInputConfigData.h"
+
+
 
 // Sets default values
 APlayerMove::APlayerMove()
@@ -61,17 +56,18 @@ void APlayerMove::BeginPlay()
 
 	//1st BP Graph
 	//Cast(change the data type) the Player Controller.
-	APlayerController* playerCon = Cast<APlayerController>(Controller());
+	APlayerController* playerCon = Cast<APlayerController>(GetController());		//Controller == GetController() But why is function better than variable
 
 	//2nd BP Graph
 	//if assigned properly
 	if (playerCon != nullptr) {
-		UEnhancedInputLocalPlayerSubsystem* subsystem = ULocalPlayer::GetSubsystem(playerCon->GetLocalPlayer());
-	}
+		UEnhancedInputLocalPlayerSubsystem* subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(playerCon->GetLocalPlayer());
 
-	//3rd BP Graph
-	if (subsystem != nullptr) {
-		subsystem->AddMappingContext(iMCMyMapping, 0);
+
+		//3rd BP Graph
+		if (subsystem != nullptr) {
+			subsystem->AddMappingContext(iMCMyMapping, 0);
+		}
 	}
 }
 
@@ -92,6 +88,13 @@ void APlayerMove::Tick(float DeltaTime)
 void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	
+	//cast original UInputComponent* variable to UEnhancedInputComponent*
+	UEnhancedInputComponent* enhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+
+	//connect to function
+	enhancedInputComponent->BindAction(iAHorizontal, ETriggerEvent::Triggered, this, &APlayerMove::Horizontal);
+	enhancedInputComponent->BindAction(iAHorizontal, ETriggerEvent::Completed, this, &APlayerMove::Horizontal);
 
 #pragma region Old Input
 	////Bind input functions to horizontal axis
@@ -108,11 +111,21 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 #pragma region Input Functions
 //Axis
-void APlayerMove::Horizontal(float value) {
-	hori = value;
-	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
 
-	direction.Y = hori;
+//Original Horizontal function
+//void APlayerMove::Horizontal(float value) {
+//	hori = value;
+//	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
+//
+//	direction.Y = hori;
+//}
+
+//Enhanced Horizontal Function
+void APlayerMove::Horizontal(const FInputActionValue& value)
+{
+	hori = value.Get<float>();
+	UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
+
 }
 
 void APlayerMove::Vertical(float value) {
