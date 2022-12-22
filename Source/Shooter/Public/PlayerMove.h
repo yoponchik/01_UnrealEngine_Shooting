@@ -67,12 +67,16 @@ private:
 	//UFUNCTION(BlueprintCallable)
 	//void Horizontal(float value);//comment to prevent overloading
 
+	//Original Vertical function
+	//UFUNCTION(BlueprintCallable)
+	//void Vertical(float value);
+
 	//Enhanced Horizontal function
 	UFUNCTION(BlueprintCallable)
 	void Horizontal(const FInputActionValue& value);			
-
 	UFUNCTION(BlueprintCallable)
-	void Vertical(float value);
+	void Vertical(const FInputActionValue& value);
+
 	
 	float hori;
 	float verti;
