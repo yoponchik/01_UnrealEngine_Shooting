@@ -95,6 +95,12 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//connect to function
 	enhancedInputComponent->BindAction(iAHorizontal, ETriggerEvent::Triggered, this, &APlayerMove::Horizontal);
 	enhancedInputComponent->BindAction(iAHorizontal, ETriggerEvent::Completed, this, &APlayerMove::Horizontal);
+	
+	enhancedInputComponent->BindAction(iAVertical, ETriggerEvent::Triggered, this, &APlayerMove::Vertical);
+	enhancedInputComponent->BindAction(iAVertical, ETriggerEvent::Completed, this, &APlayerMove::Vertical);
+	
+	enhancedInputComponent->BindAction(iAFire, ETriggerEvent::Triggered, this, &APlayerMove::FireBullet);
+
 
 #pragma region Old Input
 	////Bind input functions to horizontal axis
@@ -120,18 +126,28 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //	direction.Y = hori;
 //}
 
+//Original Vertical function
+//void APlayerMove::Vertical(float value) {
+//	verti = value;
+//	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), verti);
+//	direction.Z = verti;
+//}
+
 //Enhanced Horizontal Function
 void APlayerMove::Horizontal(const FInputActionValue& value)
 {
 	hori = value.Get<float>();
-	UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
-
+	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
+	direction.Y = hori;
 }
 
-void APlayerMove::Vertical(float value) {
-	verti = value;
-	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), verti);
+
+void APlayerMove::Vertical(const FInputActionValue& value)
+{
+	verti = value.Get<float>();
+	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), hori);
 	direction.Z = verti;
+
 }
 
 //Action
