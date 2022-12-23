@@ -36,7 +36,14 @@ void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
 	
+#pragma region Collision
+
+
 	boxComp->OnComponentBeginOverlap.AddDynamic(this, &ABullet::OnOverlap);
+
+	//Enable Overlap event
+	boxComp->SetGenerateOverlapEvents(true);
+#pragma endregion
 }
 
 // Called every frame
