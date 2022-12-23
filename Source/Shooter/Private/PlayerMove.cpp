@@ -47,6 +47,11 @@ APlayerMove::APlayerMove()
 		meshComp->SetStaticMesh(cubeMesh.Object);
 	}
 #pragma endregion
+
+#pragma region Collision
+	boxComp->SetCollisionProfileName(TEXT("PlayerCollisionPreset"));
+#pragma endregion
+
 }
 
 // Called when the game starts or when spawned
