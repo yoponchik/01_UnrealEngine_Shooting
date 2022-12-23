@@ -25,6 +25,10 @@ ABullet::ABullet()
 
 
 #pragma endregion
+
+#pragma region Collision
+	boxComp->SetCollisionProfileName(TEXT("BulletCollisionPreset"));
+#pragma endregion
 }
 
 // Called when the game starts or when spawned
