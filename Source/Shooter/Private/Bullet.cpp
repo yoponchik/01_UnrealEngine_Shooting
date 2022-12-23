@@ -2,9 +2,9 @@
 
 
 #include "Bullet.h"
-
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Enemy.h"
 
 // Sets default values
 ABullet::ABullet()
@@ -36,6 +36,7 @@ void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	boxComp->OnComponentBeginOverlap.AddDynamic(this, &ABullet::OnOverlap);
 }
 
 // Called every frame
@@ -47,5 +48,20 @@ void ABullet::Tick(float DeltaTime)
 
 	SetActorLocation(GetActorLocation() + myDirection * moveSpeed * DeltaTime);
 }
+
+#pragma region Collision
+void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	AEnemy* enemy = Cast<AEnemy>(OtherActor);
+
+	if (enemy != nullptr) {
+		//delete enemy
+		enemy->Destroy();
+
+		//delete this.bullet
+		Destroy();
+	}
+}
+#pragma endregion
 
 
