@@ -32,6 +32,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
 	float moveSpeed = 800;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
+	float followProb = 0.3f;
+
+	class APlayerMove* target;
 private:
 	FVector direction;
 };
