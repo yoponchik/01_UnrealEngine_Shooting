@@ -24,7 +24,7 @@ AEnemy::AEnemy()
 	boxComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 	//set object type's reply channel to 
-	boxComp->SetCollisionObjectType(ECC_GameTraceChannel12);		//ECC = ECollision Channel
+	boxComp->SetCollisionObjectType(ECC_GameTraceChannel2);		//ECC = ECollision Channel
 	
 	//Set all to ignore
 	boxComp->SetCollisionResponseToAllChannels(ECR_Ignore);			//ECR = ECollision Response
