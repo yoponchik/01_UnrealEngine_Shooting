@@ -36,6 +36,15 @@ public:
 	float followProb = 0.3f;
 
 	class APlayerMove* target;
+
+	UFUNCTION()
+	void OnOverlap(UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult);
+
 private:
 	FVector direction;
 };

@@ -57,15 +57,24 @@ void AEnemy::BeginPlay()
 		for (TActorIterator<APlayerMove> it(GetWorld()); it; ++it) {
 			target = *it;
 		}
-	
-		FVector targetDir = target->GetActorLocation() - GetActorLocation();
-		targetDir.Normalize();					//need to normalize or else it will shoot out very far far
 		
-		direction = targetDir;
+		if (target != nullptr) {
+			FVector targetDir = target->GetActorLocation() - GetActorLocation();
+			targetDir.Normalize();					//need to normalize or else it will shoot out very far far
+		
+			direction = targetDir;
+		}
 	}
 	else {
 		direction = GetActorForwardVector();
 	}
+#pragma endregion
+
+#pragma region Collision
+	boxComp->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnOverlap);
+
+	//Enable Overlap event
+	boxComp->SetGenerateOverlapEvents(true);
 #pragma endregion
 }
 
@@ -78,4 +87,19 @@ void AEnemy::Tick(float DeltaTime)
 	SetActorLocation(GetActorLocation() + direction * moveSpeed * DeltaTime);
 #pragma endregion 
 }
+
+#pragma region Collision
+void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	APlayerMove* player = Cast<APlayerMove>(OtherActor);
+
+	if (player != nullptr) {
+		//delete player
+		player->Destroy();
+
+		//delete this.enemy
+		Destroy();
+	}
+}
+#pragma endregion
 
