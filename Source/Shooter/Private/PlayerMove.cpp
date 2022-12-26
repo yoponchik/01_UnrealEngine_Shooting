@@ -85,7 +85,7 @@ void APlayerMove::Tick(float DeltaTime)
 	//P = P0 + vt
 	direction.Normalize();
 	FVector dir = GetActorLocation() + direction * moveSpeed * DeltaTime;
-	SetActorLocation(dir);
+	SetActorLocation(dir,true);
 #pragma endregion
 }
 
