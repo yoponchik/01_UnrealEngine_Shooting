@@ -42,4 +42,8 @@ public:
 		const FHitResult& SweepResult);
 private:
 	FVector myDirection;
+
+	FTimerHandle lifeTimer;
+	void DestroyMyself();
+
 };

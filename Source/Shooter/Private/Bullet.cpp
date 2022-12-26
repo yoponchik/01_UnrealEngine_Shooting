@@ -36,7 +36,7 @@ void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
 	
-#pragma region Collision
+#pragma region CollisionAPlayerController* playerCon
 
 
 	boxComp->OnComponentBeginOverlap.AddDynamic(this, &ABullet::OnOverlap);
@@ -44,6 +44,12 @@ void ABullet::BeginPlay()
 	//Enable Overlap event
 	boxComp->SetGenerateOverlapEvents(true);
 #pragma endregion
+
+	//Method 1
+	//SetLifeSpan(2.0f);		//Destroyed after 2 seconds
+	
+	//Method 2
+	GetWorld()->GetTimerManager().SetTimer(lifeTimer, this, &ABullet::DestroyMyself, 2.0f, false);			//true makes it repeat
 }
 
 // Called every frame
@@ -71,4 +77,7 @@ void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 }
 #pragma endregion
 
+void ABullet::DestroyMyself() {
 
+	Destroy();
+}
