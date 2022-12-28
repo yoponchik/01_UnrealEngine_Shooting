@@ -9,6 +9,7 @@
 #include "GameFramework/Controller.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -199,6 +200,9 @@ void APlayerMove::FireBullet()
 
 	//spawn bullet at the position, orientation with the set parameters
 	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
+
+	//SFX for the bullet
+	UGameplayStatics::PlaySound2D(this, bulletSound);
 }
 #pragma endregion
 

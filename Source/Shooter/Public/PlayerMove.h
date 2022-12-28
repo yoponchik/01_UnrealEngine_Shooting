@@ -64,6 +64,9 @@ public:
 	void ChangeHitColor(float time);
 	void ChangeToOriginalColor();
 
+	//SFX
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class USoundBase* bulletSound;
 
 private:
 	//PlayerMovement
