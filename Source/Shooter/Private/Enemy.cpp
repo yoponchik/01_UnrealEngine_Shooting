@@ -76,6 +76,8 @@ void AEnemy::BeginPlay()
 	//Enable Overlap event
 	boxComp->SetGenerateOverlapEvents(true);
 #pragma endregion
+
+
 }
 
 // Called every frame
@@ -95,11 +97,15 @@ void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherAc
 
 	if (player != nullptr) {
 		//delete player
-		player->Destroy();
+		//player->Destroy();
+
+		//PlayerMove ~> Enemy Change Color
+		player->ReserveHitColor(0.2f);
 
 		//delete this.enemy
 		Destroy();
 	}
 }
 #pragma endregion
+
 

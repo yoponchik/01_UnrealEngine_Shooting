@@ -11,8 +11,6 @@
 #include "EnhancedInputComponent.h"
 
 
-
-
 // Sets default values
 APlayerMove::APlayerMove()
 {
@@ -59,6 +57,7 @@ void APlayerMove::BeginPlay()
 {
 	Super::BeginPlay();
 
+#pragma region Enhanced Input
 	//1st BP Graph
 	//Cast(change the data type) the Player Controller.
 	APlayerController* playerCon = Cast<APlayerController>(GetController());		//Controller == GetController() But why is function better than variable
@@ -68,12 +67,19 @@ void APlayerMove::BeginPlay()
 	if (playerCon != nullptr) {
 		UEnhancedInputLocalPlayerSubsystem* subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(playerCon->GetLocalPlayer());
 
-
 		//3rd BP Graph
 		if (subsystem != nullptr) {
 			subsystem->AddMappingContext(iMCMyMapping, 0);
 		}
 	}
+#pragma endregion
+
+#pragma region Change Enemy Material Color
+	//save current material color vector
+	myMat = Cast<UMaterialInstanceDynamic>(meshComp->GetMaterial(0));
+	FHashedMaterialParameterInfo param;
+	myMat->GetVectorParameterValue(param, (FLinearColor)initColor);
+#pragma endregion
 }
 
 // Called every frame
@@ -93,11 +99,12 @@ void APlayerMove::Tick(float DeltaTime)
 void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	
+
+#pragma region Enhanced Input
 	//cast original UInputComponent* variable to UEnhancedInputComponent*
 	UEnhancedInputComponent* enhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 
-	//connect to function
+	//binding to function
 	enhancedInputComponent->BindAction(iAHorizontal, ETriggerEvent::Triggered, this, &APlayerMove::Horizontal);
 	enhancedInputComponent->BindAction(iAHorizontal, ETriggerEvent::Completed, this, &APlayerMove::Horizontal);
 	
@@ -105,7 +112,7 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	enhancedInputComponent->BindAction(iAVertical, ETriggerEvent::Completed, this, &APlayerMove::Vertical);
 	
 	enhancedInputComponent->BindAction(iAFire, ETriggerEvent::Triggered, this, &APlayerMove::FireBullet);
-
+#pragma endregion
 
 #pragma region Old Input
 	////Bind input functions to horizontal axis
@@ -117,7 +124,6 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	////Bind input function to action input
 	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerMove::FireBullet);
 #pragma endregion
-
 }
 
 #pragma region Input Functions
@@ -170,5 +176,22 @@ void APlayerMove::FireBullet()
 
 	//spawn bullet at the position, orientation with the set parameters
 	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
+}
+#pragma endregion
+
+#pragma region Change Enemy Material Color
+void APlayerMove::ReserveHitColor(float time) {
+	ChangeHitColor();
+	GetWorld()->GetTimerManager().SetTimer(colorTimer, this, &APlayerMove::ChangeHitColor, time, false);
+}
+
+void APlayerMove::ChangeHitColor() {
+	myMat->SetVectorParameterValue(TEXT("myColor"), FLinearColor::Red);
+	//myMat->SetVectorParameterValue(TEXT("myColor"), FLinearColor(255,0,0,255));
+}
+
+void APlayerMove::ChangeOriginalColor() {
+
+	myMat->SetVectorParameterValue(TEXT("myColor"), initColor);
 }
 #pragma endregion

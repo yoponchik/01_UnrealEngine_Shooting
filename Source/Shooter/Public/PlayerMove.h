@@ -59,10 +59,20 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class UInputMappingContext* iMCMyMapping;
+	
+	//Change EnemyColor
+	void ChangeHitColor();
+	void ChangeOriginalColor();
+	void ReserveHitColor(float time);
+
 
 private:
 	//PlayerMovement
-	
+	float hori;
+	float verti;
+	FVector direction;
+
+#pragma region Old Input
 	//Original Horizontal function
 	//UFUNCTION(BlueprintCallable)
 	//void Horizontal(float value);//comment to prevent overloading
@@ -70,6 +80,7 @@ private:
 	//Original Vertical function
 	//UFUNCTION(BlueprintCallable)
 	//void Vertical(float value);
+#pragma endregion 
 
 	//Enhanced Horizontal function
 	UFUNCTION(BlueprintCallable)
@@ -77,13 +88,12 @@ private:
 	UFUNCTION(BlueprintCallable)
 	void Vertical(const FInputActionValue& value);
 
-	
-	float hori;
-	float verti;
-
-	FVector direction;
-
 	//Player Fire
 	UFUNCTION(BlueprintCallable)
 	void FireBullet();
+
+	//Change Enemy Color
+	FLinearColor initColor;
+	FTimerHandle colorTimer;
+	class UMaterialInstanceDynamic* myMat;
 };
