@@ -14,7 +14,7 @@ AEnemy::AEnemy()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-#pragma region Initialize Colliders Meshes
+#pragma region Initialize Components
 	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
 	SetRootComponent(boxComp);
 	boxComp->SetBoxExtent(FVector(50)); 
@@ -100,7 +100,7 @@ void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherAc
 		//player->Destroy();
 
 		//PlayerMove ~> Enemy Change Color
-		player->ReserveHitColor(0.2f);
+		player->ChangeHitColor(0.1f);
 
 		//delete this.enemy
 		Destroy();
