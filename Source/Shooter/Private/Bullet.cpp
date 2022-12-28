@@ -5,6 +5,7 @@
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Enemy.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ABullet::ABullet()
@@ -68,6 +69,14 @@ void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 	AEnemy* enemy = Cast<AEnemy>(OtherActor);
 
 	if (enemy != nullptr) {
+		
+		//get enemy location
+		FVector enemyPos = enemy->GetActorLocation();
+		FRotator enemyRot = enemy->GetActorRotation();
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionEffect, enemyPos, enemyRot, true);
+
+		//explosion VFX at the enemy position
+
 		//delete enemy
 		enemy->Destroy();
 

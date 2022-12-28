@@ -33,6 +33,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
 	float moveSpeed = 900;
 
+	UPROPERTY(EditDefaultsOnly, Category = BulletSettings);
+	class UParticleSystem* explosionEffect;
+
 	UFUNCTION()
 	void OnOverlap(UPrimitiveComponent* OverlappedComponent, 
 		AActor* OtherActor, 
