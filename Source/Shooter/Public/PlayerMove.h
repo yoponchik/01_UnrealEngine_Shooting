@@ -61,9 +61,8 @@ public:
 	class UInputMappingContext* iMCMyMapping;
 	
 	//Change EnemyColor
-	void ChangeHitColor();
-	void ChangeOriginalColor();
-	void ReserveHitColor(float time);
+	void ChangeHitColor(float time);
+	void ChangeToOriginalColor();
 
 
 private:
@@ -95,5 +94,5 @@ private:
 	//Change Enemy Color
 	FLinearColor initColor;
 	FTimerHandle colorTimer;
-	class UMaterialInstanceDynamic* myMat;
+	UMaterialInstanceDynamic* dynamicMat;
 };

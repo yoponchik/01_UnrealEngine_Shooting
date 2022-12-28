@@ -76,9 +76,21 @@ void APlayerMove::BeginPlay()
 
 #pragma region Change Enemy Material Color
 	//save current material color vector
-	myMat = Cast<UMaterialInstanceDynamic>(meshComp->GetMaterial(0));
-	FHashedMaterialParameterInfo param;
-	myMat->GetVectorParameterValue(param, (FLinearColor)initColor);
+	UMaterialInterface* iMat = meshComp->GetMaterial(0);
+	FHashedMaterialParameterInfo param = FHashedMaterialParameterInfo(TEXT("myColor"));
+
+	//Assign vector parameter from the Material interface to initColor
+	iMat->GetVectorParameterValue(param, initColor);
+
+	UE_LOG(LogTemp, Warning, TEXT("R: %f, G: %f, B:%f"), initColor.R, initColor.G, initColor.B);
+
+	//Create Material Instance Dynamic object from Material instance
+	dynamicMat = UMaterialInstanceDynamic:: Create(iMat, this);
+
+	//set dynamic Material in the mesh component
+	if (dynamicMat != nullptr) {
+		meshComp->SetMaterial(0, dynamicMat);
+	}
 #pragma endregion
 }
 
@@ -86,6 +98,17 @@ void APlayerMove::BeginPlay()
 void APlayerMove::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+
+	//int32 currentScore = 10;
+	//int32 bestScore = 7;
+
+	//// 만일, 현재 점수가 최고 점수보다 크다면...
+	//if (bestScore > currentScore) {
+	//	// 최고 점수에 현재 점수를 넣는다.
+	//	bestScore = currentScore;
+	//}
+
 
 #pragma region PlayerMovement
 	//P = P0 + vt
@@ -180,18 +203,14 @@ void APlayerMove::FireBullet()
 #pragma endregion
 
 #pragma region Change Enemy Material Color
-void APlayerMove::ReserveHitColor(float time) {
-	ChangeHitColor();
-	GetWorld()->GetTimerManager().SetTimer(colorTimer, this, &APlayerMove::ChangeHitColor, time, false);
+
+void APlayerMove::ChangeToOriginalColor() {
+	dynamicMat->SetVectorParameterValue(TEXT("myColor"), (FVector4)initColor);
 }
 
-void APlayerMove::ChangeHitColor() {
-	myMat->SetVectorParameterValue(TEXT("myColor"), FLinearColor::Red);
-	//myMat->SetVectorParameterValue(TEXT("myColor"), FLinearColor(255,0,0,255));
-}
+void APlayerMove::ChangeHitColor(float time) {
+	dynamicMat->SetVectorParameterValue(TEXT("myColor"), (FVector4)FLinearColor::Red);
 
-void APlayerMove::ChangeOriginalColor() {
-
-	myMat->SetVectorParameterValue(TEXT("myColor"), initColor);
+	GetWorld()->GetTimerManager().SetTimer(colorTimer, this, &APlayerMove::ChangeToOriginalColor, time, false);
 }
 #pragma endregion
