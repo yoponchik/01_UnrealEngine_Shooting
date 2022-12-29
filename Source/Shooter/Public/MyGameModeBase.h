@@ -6,9 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "MyGameModeBase.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class SHOOTER_API AMyGameModeBase : public AGameModeBase
 {
@@ -20,6 +18,9 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE int32 GetCurrentScore() {return currentScore;}
+	
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE int32 GetHighScore() {return highScore;}
 
 	virtual void BeginPlay() override;
 
@@ -28,6 +29,13 @@ public:
 
 private:
 	int32 currentScore = 0;
+	int32 highScore = 0;
 
 	class UMainWidget* mainUI;
+
+	//absolute path
+	FString filePath = FString("D:/01_UnrealEngine_Shooting/Content/SaveScores/HighScore.txt");
+	//relative path
+	//FString filePath2 = FString("../../../Content/SaveScores/HighScore.txt");
+
 };
