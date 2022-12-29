@@ -6,6 +6,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Enemy.h"
 #include "Kismet/GameplayStatics.h"
+#include "MyGameModeBase.h"
+
 
 // Sets default values
 ABullet::ABullet()
@@ -63,7 +65,7 @@ void ABullet::Tick(float DeltaTime)
 	SetActorLocation(GetActorLocation() + myDirection * moveSpeed * DeltaTime);
 }
 
-#pragma region Collision
+#pragma region Collision & Scores
 void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	AEnemy* enemy = Cast<AEnemy>(OtherActor);
@@ -79,6 +81,18 @@ void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 
 		//delete enemy
 		enemy->Destroy();
+
+#pragma region AddScore (AMyGameModeBase)
+		//Add Game mode's score by 1
+		AGameModeBase* gm = UGameplayStatics::GetGameMode(this);		//Game mode can be accessed from my any script. dont need to cast,etc
+		//AGameModeBase* gm = GetWorld()->GetAuthGameMode();			//Smae thing
+		AMyGameModeBase* myGM = Cast<AMyGameModeBase>(gm);
+
+		myGM->AddScore(1);
+#pragma region Debug
+		UE_LOG(LogTemp, Warning, TEXT("Point: %d"), myGM->GetCurrentScore());
+#pragma endregion
+#pragma endregion
 
 		//delete this.bullet
 		Destroy();
