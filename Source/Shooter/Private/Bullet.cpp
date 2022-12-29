@@ -85,7 +85,7 @@ void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 #pragma region AddScore (AMyGameModeBase)
 		//Add Game mode's score by 1
 		AGameModeBase* gm = UGameplayStatics::GetGameMode(this);		//Game mode can be accessed from my any script. dont need to cast,etc
-		//AGameModeBase* gm = GetWorld()->GetAuthGameMode();			//Smae thing
+		//AGameModeBase* gm = GetWorld()->GetAuthGameMode();			//Same thing > useful when you didn't include UGameplayStatics
 		AMyGameModeBase* myGM = Cast<AMyGameModeBase>(gm);
 
 		myGM->AddScore(1);
