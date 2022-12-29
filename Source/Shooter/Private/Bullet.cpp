@@ -90,7 +90,7 @@ void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 
 		myGM->AddScore(1);
 #pragma region Debug
-		UE_LOG(LogTemp, Warning, TEXT("Point: %d"), myGM->GetCurrentScore());
+		//UE_LOG(LogTemp, Warning, TEXT("Point: %d"), myGM->GetCurrentScore());
 #pragma endregion
 #pragma endregion
 
