@@ -6,7 +6,7 @@
 
 void AMyGameModeBase::BeginPlay()
 {
-	UMainWidget* mainUI = CreateWidget<UMainWidget>(GetWorld(), mainWidget);
+	mainUI = CreateWidget<UMainWidget>(GetWorld(), mainWidget);
 
 	if (mainUI != nullptr) {
 		
@@ -21,5 +21,10 @@ void AMyGameModeBase::BeginPlay()
 void AMyGameModeBase::AddScore(int32 count)
 {
 	currentScore += count;
+	
+	if (mainUI != nullptr) {
+		//print current score on the widget's uICurrentScore textblock 
+		mainUI->PrintCurrentScore();
+	}
 }
 

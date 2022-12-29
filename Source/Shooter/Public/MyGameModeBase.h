@@ -28,4 +28,6 @@ public:
 
 private:
 	int32 currentScore = 0;
+
+	class UMainWidget* mainUI;
 };
