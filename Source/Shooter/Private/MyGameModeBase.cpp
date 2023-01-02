@@ -11,32 +11,31 @@ void AMyGameModeBase::BeginPlay()
 {
 	mainUI = CreateWidget<UMainWidget>(GetWorld(), mainWidget);
 
-	if (mainUI != nullptr) {
-		
-		//draw generated widget on viewport
-		mainUI->AddToViewport();
+	if (mainUI == nullptr) { return;}									//nullptr checker for main UI
 
-		//read the file to bring the high score
-		FString scoreText;
-		bool isLoadSuccess = FFileHelper::LoadFileToString(scoreText, *filePath);
+	mainUI->AddToViewport();											//draw score ui in viewport
+		
+#pragma region Load High Score
+	//read the file to bring the high score
+	FString scoreText;
+	bool isLoadSuccess = FFileHelper::LoadFileToString(scoreText, *filePath);
 
 #pragma region Debug
-		//if(isLoadSuccess){
-		//	UE_LOG(LogTemp, Warning, TEXT("Loading Succeeded"));
-		//}
-		//else{
-		//	UE_LOG(LogTemp, Warning, TEXT("Loading failed"));
-		//}
-		////Same
-		//UE_LOG(LogTemp, Warning, TEXT("%s"), isLoadSuccess ? TEXT("Success" : TEXT("Failed")));
+	//if(isLoadSuccess){
+	//	UE_LOG(LogTemp, Warning, TEXT("Loading Succeeded"));
+	//}
+	//else{
+	//	UE_LOG(LogTemp, Warning, TEXT("Loading failed"));
+	//}
+	////Same
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), isLoadSuccess ? TEXT("Success" : TEXT("Failed")));
 #pragma endregion
 	
-	//Convert alphabet to integer and assign it to highScore
-		highScore = FCString::Atoi(*scoreText);
+//Convert alphabet to integer and assign it to highScore
+	highScore = FCString::Atoi(*scoreText);
+#pragma endregion
 
-	//print current score on the widget's uICurrentScore textblock 
-		mainUI->PrintCurrentScore();
-	}
+	mainUI->PrintCurrentScore();										//print current score on the widget's uICurrentScore textblock 
 }
 
 #pragma region Score UI
@@ -72,9 +71,9 @@ void AMyGameModeBase::ShowMenu()
 	//create instance
 	menuUI = CreateWidget<UMenuWidget>(GetWorld(), menuWidget);
 
-	if(menuUI != nullptr){
-		menuUI->AddToViewport();
-	}
+	if(menuUI == nullptr){return;}										//nullptr checker for menu UI
+	
+	menuUI->AddToViewport();											//draw menu UI in viewport
 
 	//Pause the game
 	UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0);				// Method 1 - Make time dilation 0

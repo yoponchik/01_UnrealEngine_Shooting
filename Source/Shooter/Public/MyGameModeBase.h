@@ -13,6 +13,9 @@ class SHOOTER_API AMyGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 public:
+	virtual void BeginPlay() override;
+
+#pragma region Score UI
 	UPROPERTY(EditAnywhere, Category=DefaultSettings)
 	TSubclassOf<class UMainWidget> mainWidget;
 	
@@ -22,27 +25,33 @@ public:
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE int32 GetHighScore() {return highScore;}
 
-	virtual void BeginPlay() override;
-
 	void AddScore(int32 count);
+#pragma endregion
 
+#pragma region Menu UI
 	void ShowMenu();
 	
 	UPROPERTY(EditAnywhere, Category=DefaultSettings)
 	TSubclassOf<class UMenuWidget> menuWidget;
-
+#pragma endregion
 
 private:
+#pragma region Score UI
 	int32 currentScore = 0;
 	int32 highScore = 0;
 
 	class UMainWidget* mainUI;
+#pragma endregion
 
+#pragma region Menu UI
 	class UMenuWidget* menuUI;
+#pragma endregion
 
+#pragma region Load High Score
 	//absolute path
 	FString filePath = FString("D:/01_UnrealEngine_Shooting/Content/SaveScores/HighScore.txt");
 	//relative path
 	//FString filePath2 = FString("../../../Content/SaveScores/HighScore.txt");
+#pragma endregion
 
 };
