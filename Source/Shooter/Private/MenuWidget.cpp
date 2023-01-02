@@ -8,6 +8,7 @@
 void UMenuWidget::NativeConstruct()
 {
 	btnResume->OnClicked.AddDynamic(this, &UMenuWidget::ResumeGame);
+	btnRestart->OnClicked.AddDynamic(this, &UMenuWidget::RestartGame);
 }
 
 void UMenuWidget::ResumeGame()
@@ -19,6 +20,17 @@ void UMenuWidget::ResumeGame()
 	//hide mouse cursor
 	GetWorld()->GetFirstPlayerController()->SetShowMouseCursor(false);
 
-	//
+	//delete viewport to lighten the memory
+	this->RemoveFromParent();
+}
+
+void UMenuWidget::RestartGame()
+{
+	//Load the level
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("ShootingLevel"));
+
+	GetWorld()->GetFirstPlayerController()->SetShowMouseCursor(false);
+
+	//delete viewport to lighten the memory
 	this->RemoveFromParent();
 }

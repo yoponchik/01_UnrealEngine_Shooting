@@ -34,4 +34,7 @@ private:
 	//Dynamic Functions
 	UFUNCTION()
 	void ResumeGame();
+	
+	UFUNCTION()
+	void RestartGame();
 };
