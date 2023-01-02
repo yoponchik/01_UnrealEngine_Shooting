@@ -4,6 +4,7 @@
 #include "MyGameModeBase.h"
 #include "MainWidget.h"
 #include "MenuWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void AMyGameModeBase::BeginPlay()
@@ -38,6 +39,7 @@ void AMyGameModeBase::BeginPlay()
 	}
 }
 
+#pragma region Score UI
 void AMyGameModeBase::AddScore(int32 count)
 {
 	//Update Current Score
@@ -62,7 +64,9 @@ void AMyGameModeBase::AddScore(int32 count)
 		mainUI->PrintCurrentScore();
 	}
 }
+#pragma endregion 
 
+#pragma region Menu
 void AMyGameModeBase::ShowMenu()
 {
 	//create instance
@@ -71,5 +75,13 @@ void AMyGameModeBase::ShowMenu()
 	if(menuUI != nullptr){
 		menuUI->AddToViewport();
 	}
+
+	//Pause the game
+	UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0);				// Method 1 - Make time dilation 0
+	//UGameplayStatics::SetGamePaused(GetWorld(), true);				//Method 2 - call Pause Game function
+
+	//Show Mouse Cursor
+	GetWorld()->GetFirstPlayerController()->SetShowMouseCursor(true);
 }
+#pragma endregion
 
