@@ -41,10 +41,10 @@ public:
 
 	//PlayerMovement
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
-	float regularSpeed = 500;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	float moveSpeed = 500;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	float regularSpeed = 500;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	float boostSpeed = 800;

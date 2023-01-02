@@ -135,7 +135,7 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerMove::FireBullet);
 #pragma endregion
 
-#pragma region Enhanced Input: Movement
+#pragma region Enhanced Input: Movement & Fire
 	//cast original UInputComponent* variable to UEnhancedInputComponent*
 	UEnhancedInputComponent* enhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 
@@ -175,7 +175,7 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //}
 #pragma endregion 
 
-#pragma region Input Functions
+#pragma region Enhanced Input Functions
 //Enhanced Horizontal Function
 void APlayerMove::Horizontal(const FInputActionValue& value)
 {
@@ -215,13 +215,13 @@ void APlayerMove::FireBullet()
 
 void APlayerMove::Boost()
 {
-	UE_LOG(LogTemp, Warning, TEXT("BOOST"));
+	//UE_LOG(LogTemp, Warning, TEXT("BOOST"));
 	moveSpeed = boostSpeed;
 }
 
 void APlayerMove::UnBoost()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UNBOOST"));
+	//UE_LOG(LogTemp, Warning, TEXT("UNBOOST"));
 	moveSpeed = regularSpeed;
 }
 
