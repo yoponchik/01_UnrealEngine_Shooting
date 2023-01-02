@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "PlayerMove.h"
 #include "EngineUtils.h"
+#include "MyGameModeBase.h"
 
 
 // Sets default values
@@ -70,7 +71,7 @@ void AEnemy::BeginPlay()
 	}
 #pragma endregion
 
-#pragma region Collision
+#pragma region Setup Collision
 	boxComp->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnOverlap);
 
 	//Enable Overlap event
@@ -97,10 +98,17 @@ void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherAc
 
 	if (player != nullptr) {
 		//delete player
-		//player->Destroy();
+		player->Destroy();
+
+		//Call function that brings up the menu widget
+		AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());			//second method of getting the gamemode
+
+		if(gm != nullptr){
+			gm->ShowMenu();
+		}
 
 		//PlayerMove ~> Enemy Change Color
-		player->ChangeHitColor(0.1f);
+		//player->ChangeHitColor(0.1f);
 
 		//delete this.enemy
 		Destroy();
