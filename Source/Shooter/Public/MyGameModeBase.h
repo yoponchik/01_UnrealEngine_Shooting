@@ -15,7 +15,7 @@ class SHOOTER_API AMyGameModeBase : public AGameModeBase
 public:
 	UPROPERTY(EditAnywhere, Category=DefaultSettings)
 	TSubclassOf<class UMainWidget> mainWidget;
-
+	
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE int32 GetCurrentScore() {return currentScore;}
 	
@@ -26,12 +26,20 @@ public:
 
 	void AddScore(int32 count);
 
+	//Menu 
+	void ShowMenu();
+	
+	UPROPERTY(EditAnywhere, Category=DefaultSettings)
+	TSubclassOf<class UMenuWidget> menuWidget;					//For blueprint
+
 
 private:
 	int32 currentScore = 0;
 	int32 highScore = 0;
 
 	class UMainWidget* mainUI;
+
+	class UMenuWidget* menuUI;
 
 	//absolute path
 	FString filePath = FString("D:/01_UnrealEngine_Shooting/Content/SaveScores/HighScore.txt");
