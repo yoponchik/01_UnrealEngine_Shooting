@@ -17,6 +17,7 @@ class SHOOTER_API UMenuWidget : public UUserWidget
 
 public:
 	
+	//buttons
 	UPROPERTY(EditDefaultsOnly, meta = (BindWidget))
 	class UButton* btnResume;
 
@@ -26,4 +27,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, meta = (BindWidget))
 	class UButton* btnQuit;
 
+	virtual void NativeConstruct() override;
+
+private:
+
+	//Dynamic Functions
+	UFUNCTION()
+	void ResumeGame();
 };
