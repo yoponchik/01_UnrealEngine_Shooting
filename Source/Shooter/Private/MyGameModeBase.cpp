@@ -3,6 +3,8 @@
 
 #include "MyGameModeBase.h"
 #include "MainWidget.h"
+#include "MenuWidget.h"
+
 
 void AMyGameModeBase::BeginPlay()
 {
@@ -15,9 +17,23 @@ void AMyGameModeBase::BeginPlay()
 
 		//read the file to bring the high score
 		FString scoreText;
-		FFileHelper::LoadFileToString(scoreText);
+		bool isLoadSuccess = FFileHelper::LoadFileToString(scoreText, *filePath);
 
-		//print current score on the widget's uICurrentScore textblock 
+#pragma region Debug
+		//if(isLoadSuccess){
+		//	UE_LOG(LogTemp, Warning, TEXT("Loading Succeeded"));
+		//}
+		//else{
+		//	UE_LOG(LogTemp, Warning, TEXT("Loading failed"));
+		//}
+		////Same
+		//UE_LOG(LogTemp, Warning, TEXT("%s"), isLoadSuccess ? TEXT("Success" : TEXT("Failed")));
+#pragma endregion
+	
+	//Convert alphabet to integer and assign it to highScore
+		highScore = FCString::Atoi(*scoreText);
+
+	//print current score on the widget's uICurrentScore textblock 
 		mainUI->PrintCurrentScore();
 	}
 }
@@ -44,6 +60,16 @@ void AMyGameModeBase::AddScore(int32 count)
 	if (mainUI != nullptr) {
 		//print current score on the widget's uICurrentScore textblock 
 		mainUI->PrintCurrentScore();
+	}
+}
+
+void AMyGameModeBase::ShowMenu()
+{
+	//create instance
+	menuUI = CreateWidget<UMenuWidget>(GetWorld(), menuWidget);
+
+	if(menuUI != nullptr){
+		menuUI->AddToViewport();
 	}
 }
 
