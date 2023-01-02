@@ -41,13 +41,24 @@ public:
 
 	//PlayerMovement
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	float regularSpeed = 500;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	float moveSpeed = 500;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	float boostSpeed = 800;
+
+
 
 	//Player Fire
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	TSubclassOf<class ABullet> bulletFactory;
 
 	//Input Actions :Enhanced Inputs
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputMappingContext* iMCMyMapping;
+
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class UInputAction* iAHorizontal;	
 
@@ -56,10 +67,10 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class UInputAction* iAFire;
-
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
-	class UInputMappingContext* iMCMyMapping;
 	
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputAction* iABoost;
+
 	//Change EnemyColor
 	void ChangeHitColor(float time);
 	void ChangeToOriginalColor();
@@ -93,6 +104,10 @@ private:
 	//Player Fire
 	UFUNCTION(BlueprintCallable)
 	void FireBullet();
+	
+	//Player Boost
+	void Boost();
+	void UnBoost();
 
 	//Change Enemy Color
 	FLinearColor initColor;

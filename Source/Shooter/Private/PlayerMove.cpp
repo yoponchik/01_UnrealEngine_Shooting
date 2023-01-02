@@ -124,7 +124,18 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-#pragma region Enhanced Input
+#pragma region Old Input
+	////Bind input functions to horizontal axis
+	//PlayerInputComponent->BindAxis("Horizontal", this, &APlayerMove::Horizontal);
+
+	////Bind input functions to vertical axis
+	//PlayerInputComponent->BindAxis("Vertical", this, &APlayerMove::Vertical);
+
+	////Bind input function to action input
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerMove::FireBullet);
+#pragma endregion
+
+#pragma region Enhanced Input: Movement
 	//cast original UInputComponent* variable to UEnhancedInputComponent*
 	UEnhancedInputComponent* enhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 
@@ -138,19 +149,14 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	enhancedInputComponent->BindAction(iAFire, ETriggerEvent::Triggered, this, &APlayerMove::FireBullet);
 #pragma endregion
 
-#pragma region Old Input
-	////Bind input functions to horizontal axis
-	//PlayerInputComponent->BindAxis("Horizontal", this, &APlayerMove::Horizontal);
-
-	////Bind input functions to vertical axis
-	//PlayerInputComponent->BindAxis("Vertical", this, &APlayerMove::Vertical);
-
-	////Bind input function to action input
-	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerMove::FireBullet);
+#pragma region Enhanced Input: Boost
+	enhancedInputComponent->BindAction(iABoost, ETriggerEvent::Triggered, this, &APlayerMove::Boost);
+	enhancedInputComponent->BindAction(iABoost, ETriggerEvent::Completed, this, &APlayerMove::UnBoost);
 #pragma endregion
+
 }
 
-#pragma region Input Functions
+#pragma region Old Input Functions
 //Axis
 
 //Original Horizontal function
@@ -167,7 +173,9 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), verti);
 //	direction.Z = verti;
 //}
+#pragma endregion 
 
+#pragma region Input Functions
 //Enhanced Horizontal Function
 void APlayerMove::Horizontal(const FInputActionValue& value)
 {
@@ -204,9 +212,22 @@ void APlayerMove::FireBullet()
 	//SFX for the bullet
 	UGameplayStatics::PlaySound2D(this, bulletSound);
 }
+
+void APlayerMove::Boost()
+{
+	UE_LOG(LogTemp, Warning, TEXT("BOOST"));
+	moveSpeed = boostSpeed;
+}
+
+void APlayerMove::UnBoost()
+{
+	UE_LOG(LogTemp, Warning, TEXT("UNBOOST"));
+	moveSpeed = regularSpeed;
+}
+
 #pragma endregion
 
-#pragma region Change Enemy Material Color
+#pragma region Change  Material Color
 
 void APlayerMove::ChangeToOriginalColor() {
 	dynamicMat->SetVectorParameterValue(TEXT("myColor"), (FVector4)initColor);
