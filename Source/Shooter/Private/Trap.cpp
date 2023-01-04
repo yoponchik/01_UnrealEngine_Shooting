@@ -12,6 +12,7 @@ ATrap::ATrap()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+#pragma region Components
 	sphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
 	SetRootComponent(sphereComp);
 	sphereComp->SetSphereRadius(200);
@@ -20,6 +21,7 @@ ATrap::ATrap()
 	meshComp->SetupAttachment(RootComponent);
 	meshComp->SetRelativeLocation(FVector(0,0,-200));
 	meshComp->SetRelativeScale3D(FVector(4.0f));
+#pragma endregion
 
 	//Collision
 	sphereComp->SetCollisionProfileName(TEXT("TrapPreset"));
@@ -30,8 +32,11 @@ void ATrap::BeginPlay()
 {
 	Super::BeginPlay();
 
+#pragma region Collision
 	//connect collision overlap delegate to in trap function
 	sphereComp->OnComponentBeginOverlap.AddDynamic(this, &ATrap::InTrap);
+	sphereComp->OnComponentEndOverlap.AddDynamic(this, &ATrap::OutTrap);
+#pragma endregion
 
 }
 
@@ -40,19 +45,55 @@ void ATrap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	TeleportTrap(DeltaTime);
 }
 
+
+#pragma region Collision
 void ATrap::InTrap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	UE_LOG(LogTemp, Warning, TEXT("In Trap"));
 
-	//if player
-	
 	APlayerMove* player = Cast<APlayerMove>(OtherActor);
 	
+	//if player
 	if(player){
 		player->canFire = false;
 	}
 	//canFire variables
 }
+
+
+void ATrap::OutTrap(UPrimitiveComponent* OverlappedComponent,AActor* OtherActor, UPrimitiveComponent* OtherComp,int32 OtherBodyIndex)
+{
+	APlayerMove* player = Cast<APlayerMove>(OtherActor);
+
+	if (player) {
+		player->canFire = true;
+	}
+}
+#pragma endregion
+
+#pragma region TeleportTrap
+void ATrap::TeleportTrap(float deltaTime)
+{
+	if (currentTime > teleportTime) {
+		//random vector
+		float randomNumY = FMath::RandRange(-500, 500);
+		float randomNumZ = FMath::RandRange(-800, 800);
+
+		FVector randomVectorPosition = FVector(0, randomNumY, randomNumZ);
+
+		//move to there
+		SetActorLocation(randomVectorPosition);
+
+		//reset currentTIme
+		currentTime = 0;
+	}
+	else {
+		currentTime += deltaTime;
+	}
+
+}
+#pragma endregion
 

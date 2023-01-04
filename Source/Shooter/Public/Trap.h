@@ -23,6 +23,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+#pragma region Components
 	//USphereComponent -> root collision
 	UPROPERTY(EditAnywhere, Category = Collision)
 	class USphereComponent* sphereComp;
@@ -30,7 +31,9 @@ public:
 	//StaticMesh as child component
 	UPROPERTY(EditAnywhere, Category = Collision)
 	class UStaticMeshComponent* meshComp;
+#pragma endregion
 
+#pragma region Collision
 	//in trap 
 	UFUNCTION()
 	void InTrap(UPrimitiveComponent* OverlappedComponent, 
@@ -39,4 +42,18 @@ public:
 			int32 OtherBodyIndex, 
 			bool bFromSweep, 
 			const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OutTrap(UPrimitiveComponent* OverlappedComponent, 
+		AActor* OtherActor, UPrimitiveComponent* OtherComp, 
+		int32 OtherBodyIndex);
+#pragma endregion
+
+#pragma region TeleportTrap
+	void TeleportTrap(float deltaTime);
+	float teleportTime = 2;
+#pragma endregion
+
+private:
+	float currentTime;
 };
