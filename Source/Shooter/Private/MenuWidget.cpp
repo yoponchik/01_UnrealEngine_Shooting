@@ -9,6 +9,7 @@ void UMenuWidget::NativeConstruct()
 {
 	btnResume->OnClicked.AddDynamic(this, &UMenuWidget::ResumeGame);
 	btnRestart->OnClicked.AddDynamic(this, &UMenuWidget::RestartGame);
+	btnQuit->OnClicked.AddDynamic(this, &UMenuWidget::QuitGame);
 }
 
 void UMenuWidget::ResumeGame()
@@ -33,4 +34,10 @@ void UMenuWidget::RestartGame()
 
 	//delete viewport to lighten the memory
 	this->RemoveFromParent();
+}
+
+void UMenuWidget::QuitGame()
+{
+	APlayerController* playerCon = GetWorld()->GetFirstPlayerController();
+	UKismetSystemLibrary::QuitGame(GetWorld(), playerCon, EQuitPreference::Quit, true);
 }

@@ -37,4 +37,7 @@ private:
 	
 	UFUNCTION()
 	void RestartGame();
+	
+	UFUNCTION()
+	void QuitGame();
 };
