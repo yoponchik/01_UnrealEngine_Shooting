@@ -10,6 +10,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "ShieldActor.h"
 
 
 // Sets default values
@@ -35,7 +36,7 @@ APlayerMove::APlayerMove()
 	//Set Mesh Component as an attachment
 	//meshComp->SetupAttachment(boxComp);		//Can do this or
 	meshComp->SetupAttachment(RootComponent);		//better when you change the root component
-
+	meshComp->SetRelativeLocation(FVector(0,0, -50));
 	//Find cube mesh from contents folder
 	//This is only convenient for making default static meshes when making blueprint
 	//otherwise, if you change the location of files, you have to change the script
@@ -49,6 +50,8 @@ APlayerMove::APlayerMove()
 
 #pragma region Collision
 	boxComp->SetCollisionProfileName(TEXT("PlayerCollisionPreset"));
+	meshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 #pragma endregion
 
 }
@@ -83,7 +86,9 @@ void APlayerMove::BeginPlay()
 	//Assign vector parameter from the Material interface to initColor
 	iMat->GetVectorParameterValue(param, initColor);
 
-	UE_LOG(LogTemp, Warning, TEXT("R: %f, G: %f, B:%f"), initColor.R, initColor.G, initColor.B);
+#pragma region Debug
+	//UE_LOG(LogTemp, Warning, TEXT("R: %f, G: %f, B:%f"), initColor.R, initColor.G, initColor.B);
+#pragma endregion
 
 	//Create Material Instance Dynamic object from Material instance
 	dynamicMat = UMaterialInstanceDynamic:: Create(iMat, this);
@@ -93,7 +98,72 @@ void APlayerMove::BeginPlay()
 		meshComp->SetMaterial(0, dynamicMat);
 	}
 #pragma endregion
+
 }
+
+
+void APlayerMove::FireBullet()
+{
+	if(!canFire){return;}
+
+	for (int32 i = 0; i < bulletCount; i++) {
+		
+		//total distance between the bullets
+		float totalSize = (bulletCount - 1) * bulletSpacing;
+
+		float baseY = totalSize * -0.5f;
+
+		FVector offset = FVector(0, baseY + 150 * i, 0);
+
+		//set spawn position
+		FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
+
+		spawnPosition += offset;
+
+		FRotator spawnRotator = FRotator(90, 0, 0);
+
+		//set spawn parameters
+		FActorSpawnParameters param;
+		param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
+
+		//spawn bullet at the position, orientation with the set parameters
+		ABullet* bullet = GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
+		
+
+
+		float midAngle = (bulletCount - 1) * bulletAngle * -0.5f;
+
+		FRotator rotMidAngle = FRotator(0, midAngle + bulletAngle * i, 0);
+		if(bullet != nullptr)
+		{
+			bullet-> AddActorLocalRotation(rotMidAngle);
+		}
+
+
+	}
+	//SFX for the bullet
+	UGameplayStatics::PlaySound2D(this, bulletSound);
+}
+
+//void APlayerMove::FireBullet()
+//{
+//	//set spawn position
+//	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
+//
+//	
+//	//set spawn rotation 
+//	FRotator spawnRotator = FRotator(90, 0, 0);
+//
+//	//set spawn parameters
+//	FActorSpawnParameters param;
+//	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
+//
+//	//spawn bullet at the position, orientation with the set parameters
+//	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
+//
+//	//SFX for the bullet
+//	UGameplayStatics::PlaySound2D(this, bulletSound);
+//}
 
 // Called every frame
 void APlayerMove::Tick(float DeltaTime)
@@ -117,7 +187,23 @@ void APlayerMove::Tick(float DeltaTime)
 	FVector dir = GetActorLocation() + direction * moveSpeed * DeltaTime;
 	SetActorLocation(dir,true);
 #pragma endregion
+	
+#pragma region Spin
+	//SpinPlayer();
+#pragma endregion
+
+
 }
+
+#pragma region Spin
+//void APlayerMove::SpinPlayer(){
+//	if(shieldActor == nullptr){return;}
+//	if (!(shieldActor->isAttached)) { return; }
+//
+//	FRotator rotAngle = FRotator(0, 0, -10);
+//	AddActorLocalRotation(rotAngle);
+//}
+#pragma endregion
 
 // Called to bind functionality to input
 void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -156,6 +242,7 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
+
 #pragma region Old Input Functions
 //Axis
 
@@ -193,25 +280,27 @@ void APlayerMove::Vertical(const FInputActionValue& value)
 
 }
 
-//Action
-void APlayerMove::FireBullet()
-{
-	//set spawn position
-	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
-	
-	//set spawn rotation 
-	FRotator spawnRotator = FRotator(90, 0, 0);
+////Action
+//void APlayerMove::FireBullet()
+//{
+//	//set spawn position
+//	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
+//
+//	
+//	//set spawn rotation 
+//	FRotator spawnRotator = FRotator(90, 0, 0);
+//
+//	//set spawn parameters
+//	FActorSpawnParameters param;
+//	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
+//
+//	//spawn bullet at the position, orientation with the set parameters
+//	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
+//
+//	//SFX for the bullet
+//	UGameplayStatics::PlaySound2D(this, bulletSound);
+//}
 
-	//set spawn parameters
-	FActorSpawnParameters param;
-	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
-
-	//spawn bullet at the position, orientation with the set parameters
-	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
-
-	//SFX for the bullet
-	UGameplayStatics::PlaySound2D(this, bulletSound);
-}
 
 void APlayerMove::Boost()
 {
