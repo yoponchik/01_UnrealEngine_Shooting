@@ -52,7 +52,7 @@ void ATrap::Tick(float DeltaTime)
 #pragma region Collision
 void ATrap::InTrap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("In Trap"));
+	//UE_LOG(LogTemp, Warning, TEXT("In Trap"));
 
 	APlayerMove* player = Cast<APlayerMove>(OtherActor);
 	
@@ -78,13 +78,25 @@ void ATrap::OutTrap(UPrimitiveComponent* OverlappedComponent,AActor* OtherActor,
 void ATrap::TeleportTrap(float deltaTime)
 {
 	if (currentTime > teleportTime) {
-		//random vector
-		float randomNumY = FMath::RandRange(-500, 500);
-		float randomNumZ = FMath::RandRange(-800, 800);
 
-		FVector randomVectorPosition = FVector(0, randomNumY, randomNumZ);
+#pragma region Method 1
+		////random float
+		//float randomNumY = FMath::RandRange(-500, 500);
+		//float randomNumZ = FMath::RandRange(-800, 800);
 
-		//move to there
+		////convert to vector
+		//FVector randomVectorPosition;
+		//randomVectorPosition.Y = randomNumY;
+		//randomVectorPosition.Z = randomNumZ;
+		////FVector randomVectorPosition = FVector(0, randomNumY, randomNumZ);
+#pragma endregion
+
+#pragma region Method 2
+	FVector randomVectorPosition = FMath::VRand() * 500.0f;
+	randomVectorPosition.X = 0;
+#pragma endregion
+
+		//move there
 		SetActorLocation(randomVectorPosition);
 
 		//reset currentTIme
