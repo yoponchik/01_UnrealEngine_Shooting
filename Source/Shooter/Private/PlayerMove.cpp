@@ -11,6 +11,9 @@
 #include "EnhancedInputComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "ShieldActor.h"
+#include "Enemy.h"
+#include "EngineUtils.h"
+#include "MyGameModeBase.h"
 
 
 // Sets default values
@@ -165,6 +168,9 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	enhancedInputComponent->BindAction(iABoost, ETriggerEvent::Completed, this, &APlayerMove::UnBoost);
 #pragma endregion
 
+	enhancedInputComponent->BindAction(iAExplosionUltimate, ETriggerEvent::Triggered, this, &APlayerMove::ExplosionUltimate);
+
+
 }
 
 
@@ -227,27 +233,6 @@ void APlayerMove::Vertical(const FInputActionValue& value)
 
 }
 
-////Action
-//void APlayerMove::FireBullet()
-//{
-//	//set spawn position
-//	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
-//
-//	
-//	//set spawn rotation 
-//	FRotator spawnRotator = FRotator(90, 0, 0);
-//
-//	//set spawn parameters
-//	FActorSpawnParameters param;
-//	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
-//
-//	//spawn bullet at the position, orientation with the set parameters
-//	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
-//
-//	//SFX for the bullet
-//	UGameplayStatics::PlaySound2D(this, bulletSound);
-//}
-
 
 void APlayerMove::Boost()
 {
@@ -261,7 +246,56 @@ void APlayerMove::UnBoost()
 	moveSpeed = regularSpeed;
 }
 
-#pragma endregion
+	#pragma region Explosion Ultimate: Method 1
+//void APlayerMove::ExplosionUltimate()
+//{
+//	TArray<AActor*> AllEnemyActors;
+//	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemy::StaticClass(), AllEnemyActors);
+//	
+//	for (int32 i = 0; i < AllEnemyActors.Num(); i++)
+//	{
+//		if(AllEnemyActors[i] != nullptr){
+//			AllEnemyActors[i]->Destroy();
+//		}
+//	}
+//}
+
+	#pragma endregion
+
+	#pragma region Explosion Ultimate: Method 2
+//void APlayerMove::ExplosionUltimate()
+//{
+//	
+//	for (TActorIterator<AEnemy> enemy(GetWorld()); enemy; ++enemy) {
+//		enemy->DestroyMyself();
+//	}
+//
+//}
+	#pragma endregion
+
+	#pragma region Explosion Ultimate: Method3
+	//uses TArray from MyGameModeBase; Enemy adds itself to that array when it's beginplay and removes itself when its endplay
+void APlayerMove::ExplosionUltimate()
+{
+	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	if(gm != nullptr){
+		for(int32 i = 0; i < gm->enemyArray.Num(); i++){
+		//check if in pending kill state
+			if(IsValid(gm->enemyArray[i])){
+				gm->enemyArray[i]->DestroyMyself();
+			}
+		}
+
+		//Reset array
+		gm->enemyArray.Empty();
+	}
+
+}
+
+	#pragma endregion
+
+#pragma endregion Enhanced Input Functions
 
 #pragma region Fire Bullet
 

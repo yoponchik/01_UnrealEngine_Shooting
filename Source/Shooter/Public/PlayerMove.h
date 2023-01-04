@@ -79,6 +79,9 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class UInputAction* iABoost;
+
+	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	class UInputAction* iAExplosionUltimate;
 #pragma endregion
 
 #pragma region Change Color
@@ -125,6 +128,14 @@ private:
 	//Player Fire
 	UFUNCTION(BlueprintCallable)
 	void FireBullet();
+	
+	//Player Boost
+	void Boost();
+	void UnBoost();
+
+	UFUNCTION(BlueprintCallable)
+	void ExplosionUltimate();
+
 #pragma endregion
 
 #pragma region Change Color
@@ -134,8 +145,5 @@ private:
 	UMaterialInstanceDynamic* dynamicMat;
 #pragma endregion
 
-	//Player Boost
-	void Boost();
-	void UnBoost();
 
 };
