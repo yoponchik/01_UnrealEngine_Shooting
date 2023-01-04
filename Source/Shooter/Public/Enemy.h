@@ -45,6 +45,14 @@ public:
 		bool bFromSweep,
 		const FHitResult& SweepResult);
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
+	class UParticleSystem* explosionFX;
+
+	void DestroyMyself();
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+
 private:
 	FVector direction;
 };

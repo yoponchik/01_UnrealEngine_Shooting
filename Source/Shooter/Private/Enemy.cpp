@@ -79,7 +79,19 @@ void AEnemy::BeginPlay()
 	boxComp->SetGenerateOverlapEvents(true);
 #pragma endregion
 
+	//add self to array
+	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+	if(gm!=nullptr){
+		gm->enemyArray.Add(this);
+	}
+}
 
+void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+	if (gm != nullptr) {
+		gm->enemyArray.Remove(this);
+	}
 }
 
 // Called every frame
@@ -115,6 +127,16 @@ void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherAc
 		Destroy();
 	}
 }
+
+void AEnemy::DestroyMyself()
+{
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionFX, GetActorLocation(), GetActorRotation(), true);
+	
+	Destroy();
+}
+
+
+
 #pragma endregion
 
 
