@@ -39,6 +39,7 @@ void AMyGameModeBase::BeginPlay()
 	mainUI->PrintCurrentScore();										//print current score on the widget's uICurrentScore textblock 
 }
 
+
 #pragma region Score UI
 void AMyGameModeBase::AddScore(int32 count)
 {

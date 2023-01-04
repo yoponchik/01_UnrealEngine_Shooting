@@ -14,7 +14,7 @@ class SHOOTER_API AMyGameModeBase : public AGameModeBase
 
 public:
 	virtual void BeginPlay() override;
-
+	
 #pragma region Score UI
 	UPROPERTY(EditAnywhere, Category=DefaultSettings)
 	TSubclassOf<class UMainWidget> mainWidget;
@@ -34,6 +34,8 @@ public:
 	UPROPERTY(EditAnywhere, Category=DefaultSettings)
 	TSubclassOf<class UMenuWidget> menuWidget;
 #pragma endregion
+
+TArray<class AEnemy*> enemyArray;
 
 private:
 #pragma region Score UI
