@@ -13,6 +13,7 @@ AShieldActor::AShieldActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+#pragma region Components
 	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
 	SetRootComponent(boxComp);
 	boxComp->SetBoxExtent(FVector(50, 150, 50));
@@ -21,8 +22,9 @@ AShieldActor::AShieldActor()
 	meshComp->SetupAttachment(RootComponent);
 	meshComp->SetRelativeScale3D(FVector(1.0f, 3.0f, 1.0f));
 	meshComp->SetRelativeLocation(FVector(0, 0, -50));
+#pragma endregion
 
-
+#pragma region Collision
 	boxComp->SetCollisionResponseToAllChannels(ECR_Ignore);
 	boxComp->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Overlap);
 	boxComp->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Overlap);
@@ -31,6 +33,8 @@ AShieldActor::AShieldActor()
 	meshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	boxComp->OnComponentBeginOverlap.AddDynamic(this, &AShieldActor::ShieldOverlap);
+#pragma endregion
+
 }
 
 // Called when the game starts or when spawned

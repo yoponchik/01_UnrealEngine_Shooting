@@ -23,18 +23,23 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
+#pragma region Components
+	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
+	class UArrowComponent* spawnArrow;
+	
+	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
+	class USceneComponent* rootScene;
+#pragma endregion
+
 	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
 	float spawnTime = 2;
 	
 	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
 	TSubclassOf<class AEnemy> enemyFactory;
 
-	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
-	class UArrowComponent* spawnArrow;
-	
-	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
-	class USceneComponent* rootScene;
 
 private:
 	float currentTime;
+
+	void EnemySpawner(float deltaTime);
 };

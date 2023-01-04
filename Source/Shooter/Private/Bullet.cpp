@@ -39,9 +39,7 @@ void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
 	
-#pragma region CollisionAPlayerController* playerCon
-
-
+#pragma region Components
 	boxComp->OnComponentBeginOverlap.AddDynamic(this, &ABullet::OnOverlap);
 
 	//Enable Overlap event
@@ -101,6 +99,5 @@ void ABullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 #pragma endregion
 
 void ABullet::DestroyMyself() {
-
 	Destroy();
 }

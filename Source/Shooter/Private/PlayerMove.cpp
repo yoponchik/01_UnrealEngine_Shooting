@@ -102,84 +102,10 @@ void APlayerMove::BeginPlay()
 }
 
 
-void APlayerMove::FireBullet()
-{
-	if(!canFire){return;}
-
-	for (int32 i = 0; i < bulletCount; i++) {
-		
-		//total distance between the bullets
-		float totalSize = (bulletCount - 1) * bulletSpacing;
-
-		float baseY = totalSize * -0.5f;
-
-		FVector offset = FVector(0, baseY + 150 * i, 0);
-
-		//set spawn position
-		FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
-
-		spawnPosition += offset;
-
-		FRotator spawnRotator = FRotator(90, 0, 0);
-
-		//set spawn parameters
-		FActorSpawnParameters param;
-		param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
-
-		//spawn bullet at the position, orientation with the set parameters
-		ABullet* bullet = GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
-		
-
-
-		float midAngle = (bulletCount - 1) * bulletAngle * -0.5f;
-
-		FRotator rotMidAngle = FRotator(0, midAngle + bulletAngle * i, 0);
-		if(bullet != nullptr)
-		{
-			bullet-> AddActorLocalRotation(rotMidAngle);
-		}
-
-
-	}
-	//SFX for the bullet
-	UGameplayStatics::PlaySound2D(this, bulletSound);
-}
-
-//void APlayerMove::FireBullet()
-//{
-//	//set spawn position
-//	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
-//
-//	
-//	//set spawn rotation 
-//	FRotator spawnRotator = FRotator(90, 0, 0);
-//
-//	//set spawn parameters
-//	FActorSpawnParameters param;
-//	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
-//
-//	//spawn bullet at the position, orientation with the set parameters
-//	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
-//
-//	//SFX for the bullet
-//	UGameplayStatics::PlaySound2D(this, bulletSound);
-//}
-
 // Called every frame
 void APlayerMove::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-
-	//int32 currentScore = 10;
-	//int32 bestScore = 7;
-
-	//// 만일, 현재 점수가 최고 점수보다 크다면...
-	//if (bestScore > currentScore) {
-	//	// 최고 점수에 현재 점수를 넣는다.
-	//	bestScore = currentScore;
-	//}
-
 
 #pragma region PlayerMovement
 	//P = P0 + vt
@@ -191,7 +117,6 @@ void APlayerMove::Tick(float DeltaTime)
 #pragma region Spin
 	//SpinPlayer();
 #pragma endregion
-
 
 }
 
@@ -260,7 +185,29 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), verti);
 //	direction.Z = verti;
 //}
-#pragma endregion 
+#pragma endregion
+
+#pragma region Old Fire Bullet
+//void APlayerMove::FireBullet()
+//{
+//	//set spawn position
+//	FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
+//
+//	
+//	//set spawn rotation 
+//	FRotator spawnRotator = FRotator(90, 0, 0);
+//
+//	//set spawn parameters
+//	FActorSpawnParameters param;
+//	param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
+//
+//	//spawn bullet at the position, orientation with the set parameters
+//	GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
+//
+//	//SFX for the bullet
+//	UGameplayStatics::PlaySound2D(this, bulletSound);
+//}
+#pragma endregion
 
 #pragma region Enhanced Input Functions
 //Enhanced Horizontal Function
@@ -314,6 +261,53 @@ void APlayerMove::UnBoost()
 	moveSpeed = regularSpeed;
 }
 
+#pragma endregion
+
+#pragma region Fire Bullet
+
+
+void APlayerMove::FireBullet()
+{
+	if(!canFire){return;}
+
+	for (int32 i = 0; i < bulletCount; i++) {
+		
+		//total distance between the bullets
+		float totalSize = (bulletCount - 1) * bulletSpacing;
+
+		float baseY = totalSize * -0.5f;
+
+		FVector offset = FVector(0, baseY + 150 * i, 0);
+
+		//set spawn position
+		FVector spawnPosition = GetActorLocation() + GetActorUpVector() * 90.0f;	//GetActorUpVector is a unit vector so its one. Vector * scalar
+
+		spawnPosition += offset;
+
+		FRotator spawnRotator = FRotator(90, 0, 0);
+
+		//set spawn parameters
+		FActorSpawnParameters param;
+		param.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;										//When spawning, might spawn overlapping with other colliders. Gives option to override it
+
+		//spawn bullet at the position, orientation with the set parameters
+		ABullet* bullet = GetWorld()->SpawnActor<ABullet>(bulletFactory, spawnPosition, spawnRotator, param);
+		
+
+
+		float midAngle = (bulletCount - 1) * bulletAngle * -0.5f;
+
+		FRotator rotMidAngle = FRotator(0, midAngle + bulletAngle * i, 0);
+		if(bullet != nullptr)
+		{
+			bullet-> AddActorLocalRotation(rotMidAngle);
+		}
+
+
+	}
+	//SFX for the bullet
+	UGameplayStatics::PlaySound2D(this, bulletSound);
+}
 #pragma endregion
 
 #pragma region Change  Material Color

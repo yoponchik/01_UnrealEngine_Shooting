@@ -51,6 +51,8 @@ public:
 
 #pragma region TeleportTrap
 	void TeleportTrap(float deltaTime);
+	
+	UPROPERTY(EditAnywhere, Category = TeleportTrap)
 	float teleportTime = 2;
 #pragma endregion
 

@@ -28,7 +28,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-#pragma region Declare Variables for Component Classes
+#pragma region Component 
 
 	//building a component
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = PlayerSettings)
@@ -39,7 +39,7 @@ public:
 
 #pragma endregion
 
-	//PlayerMovement
+#pragma region PlayerMovement
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	float moveSpeed = 500;
 
@@ -48,8 +48,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	float boostSpeed = 800;
+#pragma endregion
 
-	//Player Fire
+#pragma region PlayerFire
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	TSubclassOf<class ABullet> bulletFactory;
 
@@ -61,9 +62,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = PlayerSettings)
 	float bulletAngle = 30;
+#pragma endregion
 
-
-	//Input Actions :Enhanced Inputs
+#pragma region Input Actions : Enhanced Inputs
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class UInputMappingContext* iMCMyMapping;
 
@@ -78,28 +79,31 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class UInputAction* iABoost;
+#pragma endregion
 
-	//Change EnemyColor
+#pragma region Change Color
 	void ChangeHitColor(float time);
 	void ChangeToOriginalColor();
+#pragma endregion
 
 	//SFX
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class USoundBase* bulletSound;
 
-	//Other
 #pragma region Spin
 	class AShieldActor* shieldActor;
 	void SpinPlayer();
 #pragma endregion
 
+	//Trap
 	bool canFire = true;
 
 private:
-	//PlayerMovement
+#pragma region Player Movement
 	float hori;
 	float verti;
 	FVector direction;
+#pragma endregion
 
 #pragma region Old Input
 	//Original Horizontal function
@@ -111,6 +115,7 @@ private:
 	//void Vertical(float value);
 #pragma endregion 
 
+#pragma region Input Actions : Enhanced Inputs
 	//Enhanced Horizontal function
 	UFUNCTION(BlueprintCallable)
 	void Horizontal(const FInputActionValue& value);			
@@ -120,13 +125,17 @@ private:
 	//Player Fire
 	UFUNCTION(BlueprintCallable)
 	void FireBullet();
-	
-	//Player Boost
-	void Boost();
-	void UnBoost();
+#pragma endregion
 
+#pragma region Change Color
 	//Change Enemy Color
 	FLinearColor initColor;
 	FTimerHandle colorTimer;
 	UMaterialInstanceDynamic* dynamicMat;
+#pragma endregion
+
+	//Player Boost
+	void Boost();
+	void UnBoost();
+
 };

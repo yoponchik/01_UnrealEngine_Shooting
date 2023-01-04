@@ -23,19 +23,18 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-
+#pragma region Components
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
 	class UBoxComponent* boxComp;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
 	class UStaticMeshComponent* meshComp;
+#pragma endregion
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
 	float moveSpeed = 900;
 
-	UPROPERTY(EditDefaultsOnly, Category = BulletSettings);
-	class UParticleSystem* explosionEffect;
-
+#pragma region Collision
 	UFUNCTION()
 	void OnOverlap(UPrimitiveComponent* OverlappedComponent, 
 		AActor* OtherActor, 
@@ -43,10 +42,16 @@ public:
 		int32 OtherBodyIndex, 
 		bool bFromSweep, 
 		const FHitResult& SweepResult);
+
+	UPROPERTY(EditDefaultsOnly, Category = BulletSettings);
+	class UParticleSystem* explosionEffect;
+#pragma endregion
+
 private:
 	FVector myDirection;
 
 	FTimerHandle lifeTimer;
+
 	void DestroyMyself();
 
 };
