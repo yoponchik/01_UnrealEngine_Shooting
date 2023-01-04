@@ -49,11 +49,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	float boostSpeed = 800;
 
-
-
 	//Player Fire
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
 	TSubclassOf<class ABullet> bulletFactory;
+
+	UPROPERTY(EditAnywhere, Category = PlayerSettings)
+	int32 bulletCount = 3;
+
+	UPROPERTY(EditAnywhere, Category = PlayerSettings)
+	float bulletSpacing = 150;
+
+	UPROPERTY(EditAnywhere, Category = PlayerSettings)
+	float bulletAngle = 30;
+
 
 	//Input Actions :Enhanced Inputs
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
@@ -78,6 +86,14 @@ public:
 	//SFX
 	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
 	class USoundBase* bulletSound;
+
+	//Other
+#pragma region Spin
+	class AShieldActor* shieldActor;
+	void SpinPlayer();
+#pragma endregion
+
+	bool canFire = true;
 
 private:
 	//PlayerMovement
