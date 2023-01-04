@@ -48,10 +48,10 @@ private:
 #pragma endregion
 
 #pragma region Load High Score
-	//absolute path
-	FString filePath = FString("D:/01_UnrealEngine_Shooting/Content/SaveScores/HighScore.txt");
+	//absolute path; not recommended because creates a new folder in other ppls folder
+	//FString filePath = FString("D:/01_UnrealEngine_Shooting/Content/SaveScores/HighScore.txt");
 	//relative path
-	//FString filePath2 = FString("../../../Content/SaveScores/HighScore.txt");
+	FString filePath2 = FString("../../../Content/SaveScores/HighScore.txt");
 #pragma endregion
 
 };
