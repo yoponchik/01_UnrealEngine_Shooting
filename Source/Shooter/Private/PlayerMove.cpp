@@ -173,7 +173,6 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
-
 #pragma region Old Input Functions
 //Axis
 
@@ -233,73 +232,7 @@ void APlayerMove::Vertical(const FInputActionValue& value)
 
 }
 
-
-void APlayerMove::Boost()
-{
-	//UE_LOG(LogTemp, Warning, TEXT("BOOST"));
-	moveSpeed = boostSpeed;
-}
-
-void APlayerMove::UnBoost()
-{
-	//UE_LOG(LogTemp, Warning, TEXT("UNBOOST"));
-	moveSpeed = regularSpeed;
-}
-
-	#pragma region Explosion Ultimate: Method 1
-//void APlayerMove::ExplosionUltimate()
-//{
-//	TArray<AActor*> AllEnemyActors;
-//	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemy::StaticClass(), AllEnemyActors);
-//	
-//	for (int32 i = 0; i < AllEnemyActors.Num(); i++)
-//	{
-//		if(AllEnemyActors[i] != nullptr){
-//			AllEnemyActors[i]->Destroy();
-//		}
-//	}
-//}
-
-	#pragma endregion
-
-	#pragma region Explosion Ultimate: Method 2
-//void APlayerMove::ExplosionUltimate()
-//{
-//	
-//	for (TActorIterator<AEnemy> enemy(GetWorld()); enemy; ++enemy) {
-//		enemy->DestroyMyself();
-//	}
-//
-//}
-	#pragma endregion
-
-	#pragma region Explosion Ultimate: Method3
-	//uses TArray from MyGameModeBase; Enemy adds itself to that array when it's beginplay and removes itself when its endplay
-void APlayerMove::ExplosionUltimate()
-{
-	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
-
-	if(gm != nullptr){
-		for(int32 i = 0; i < gm->enemyArray.Num(); i++){
-		//check if in pending kill state
-			if(IsValid(gm->enemyArray[i])){
-				gm->enemyArray[i]->DestroyMyself();
-			}
-		}
-
-		//Reset array
-		gm->enemyArray.Empty();
-	}
-
-}
-
-	#pragma endregion
-
-#pragma endregion Enhanced Input Functions
-
-#pragma region Fire Bullet
-
-
+	#pragma region Fire Bullet
 void APlayerMove::FireBullet()
 {
 	if(!canFire){return;}
@@ -342,6 +275,77 @@ void APlayerMove::FireBullet()
 	//SFX for the bullet
 	UGameplayStatics::PlaySound2D(this, bulletSound);
 }
+#pragma endregion
+
+	#pragma region Boost
+void APlayerMove::Boost()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("BOOST"));
+	moveSpeed = boostSpeed;
+}
+
+void APlayerMove::UnBoost()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("UNBOOST"));
+	moveSpeed = regularSpeed;
+}
+	#pragma endregion
+
+	#pragma region Explosion Ultimate
+
+		#pragma region Explosion Ultimate: Method 1
+//void APlayerMove::ExplosionUltimate()
+//{
+//	TArray<AActor*> AllEnemyActors;
+//	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemy::StaticClass(), AllEnemyActors);
+//	
+//	for (int32 i = 0; i < AllEnemyActors.Num(); i++)
+//	{
+//		if(AllEnemyActors[i] != nullptr){
+//			AllEnemyActors[i]->Destroy();
+//		}
+//	}
+//}
+
+		#pragma endregion
+
+		#pragma region Explosion Ultimate: Method 2
+//void APlayerMove::ExplosionUltimate()
+//{
+//	
+//	for (TActorIterator<AEnemy> enemy(GetWorld()); enemy; ++enemy) {
+//		enemy->DestroyMyself();
+//	}
+//
+//}
+		#pragma endregion
+
+		#pragma region Explosion Ultimate: Method3
+	//uses TArray from MyGameModeBase; Enemy adds itself to that array when it's beginplay and removes itself when its endplay
+void APlayerMove::ExplosionUltimate()
+{
+	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	if(gm != nullptr){
+		TArray<AEnemy*> enemyArrayCopy = gm->enemyArray;
+		//for(int32 i = 0; i < gm->enemyArray.Num(); i++){
+		for(int32 i = 0; i < enemyArrayCopy.Num(); i++){
+		//check if in pending kill state
+			//if(IsValid(gm->enemyArray[i])){
+			if(IsValid(enemyArrayCopy[i])){
+				enemyArrayCopy[i]->DestroyMyself();
+			}
+		}
+
+		//Reset array
+		gm->enemyArray.Empty();
+	}
+}
+
+
+		#pragma endregion
+
+	#pragma endregion 
 #pragma endregion
 
 #pragma region Change  Material Color
