@@ -23,11 +23,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+#pragma region Components
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
 	class UBoxComponent* boxComp;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
 	class UStaticMeshComponent* meshComp;
+#pragma endregion
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
 	float moveSpeed = 800;
@@ -45,12 +47,14 @@ public:
 		bool bFromSweep,
 		const FHitResult& SweepResult);
 
+#pragma region Explosion Ultimate
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
 	class UParticleSystem* explosionFX;
 
 	void DestroyMyself();
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+#pragma endregion
 
 
 private:

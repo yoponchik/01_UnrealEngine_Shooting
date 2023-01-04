@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#pragma region Include
 #include "PlayerMove.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -14,7 +15,7 @@
 #include "Enemy.h"
 #include "EngineUtils.h"
 #include "MyGameModeBase.h"
-
+#pragma endregion
 
 // Sets default values
 APlayerMove::APlayerMove()
@@ -110,35 +111,26 @@ void APlayerMove::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-#pragma region PlayerMovement
+	#pragma region PlayerMovement
 	//P = P0 + vt
 	direction.Normalize();
 	FVector dir = GetActorLocation() + direction * moveSpeed * DeltaTime;
 	SetActorLocation(dir,true);
-#pragma endregion
+	#pragma endregion
 	
-#pragma region Spin
+	#pragma region Spin
 	//SpinPlayer();
-#pragma endregion
+	#pragma endregion
 
 }
 
-#pragma region Spin
-//void APlayerMove::SpinPlayer(){
-//	if(shieldActor == nullptr){return;}
-//	if (!(shieldActor->isAttached)) { return; }
-//
-//	FRotator rotAngle = FRotator(0, 0, -10);
-//	AddActorLocalRotation(rotAngle);
-//}
-#pragma endregion
 
 // Called to bind functionality to input
 void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-#pragma region Old Input
+	#pragma region Old Input
 	////Bind input functions to horizontal axis
 	//PlayerInputComponent->BindAxis("Horizontal", this, &APlayerMove::Horizontal);
 
@@ -147,9 +139,9 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	////Bind input function to action input
 	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerMove::FireBullet);
-#pragma endregion
+	#pragma endregion
 
-#pragma region Enhanced Input: Movement & Fire
+	#pragma region Enhanced Input: Movement & Fire
 	//cast original UInputComponent* variable to UEnhancedInputComponent*
 	UEnhancedInputComponent* enhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 
@@ -161,15 +153,14 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	enhancedInputComponent->BindAction(iAVertical, ETriggerEvent::Completed, this, &APlayerMove::Vertical);
 	
 	enhancedInputComponent->BindAction(iAFire, ETriggerEvent::Triggered, this, &APlayerMove::FireBullet);
-#pragma endregion
+	#pragma endregion
 
-#pragma region Enhanced Input: Boost
+	#pragma region Enhanced Input: Boost
 	enhancedInputComponent->BindAction(iABoost, ETriggerEvent::Triggered, this, &APlayerMove::Boost);
 	enhancedInputComponent->BindAction(iABoost, ETriggerEvent::Completed, this, &APlayerMove::UnBoost);
-#pragma endregion
+	#pragma endregion
 
 	enhancedInputComponent->BindAction(iAExplosionUltimate, ETriggerEvent::Triggered, this, &APlayerMove::ExplosionUltimate);
-
 
 }
 
@@ -359,4 +350,14 @@ void APlayerMove::ChangeHitColor(float time) {
 
 	GetWorld()->GetTimerManager().SetTimer(colorTimer, this, &APlayerMove::ChangeToOriginalColor, time, false);
 }
+#pragma endregion
+
+#pragma region Spin
+//void APlayerMove::SpinPlayer(){
+//	if(shieldActor == nullptr){return;}
+//	if (!(shieldActor->isAttached)) { return; }
+//
+//	FRotator rotAngle = FRotator(0, 0, -10);
+//	AddActorLocalRotation(rotAngle);
+//}
 #pragma endregion

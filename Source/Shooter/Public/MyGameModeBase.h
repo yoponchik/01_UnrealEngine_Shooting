@@ -35,6 +35,7 @@ public:
 	TSubclassOf<class UMenuWidget> menuWidget;
 #pragma endregion
 
+//Explosion Ultimate
 TArray<class AEnemy*> enemyArray;
 
 private:
