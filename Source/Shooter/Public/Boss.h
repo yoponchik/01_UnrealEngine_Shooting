@@ -29,16 +29,15 @@ public:
 	UPROPERTY(EditAnywhere, Category = BossSettings)
 	class UStaticMeshComponent* meshComp;
 
-	void MoveBoss(float tick);
-
-	UPROPERTY(EditAnywhere, Category = "BossSpawnSettings")
+	UPROPERTY(EditAnywhere, Category = "BossSettings")
 	float moveTime = 10;
 
-	UPROPERTY(EditAnywhere, Category = "BossSpawnSettings")
+	UPROPERTY(EditAnywhere, Category = "BossSettings")
 	FVector moveOffset =FVector(0,0,-200);
+	
+	void MoveBoss(float tick);
 
+private:
 	FVector direction;
 	FVector originalLocation;
-
-
 };

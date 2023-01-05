@@ -60,5 +60,4 @@ private:
 	FString filePath2 = FString("../../../Content/SaveScores/HighScore.txt");
 #pragma endregion
 
-
 };

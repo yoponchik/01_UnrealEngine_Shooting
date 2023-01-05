@@ -31,8 +31,6 @@ void AEnemySpawn::BeginPlay()
 	
 	//Boss
 	gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
-
-
 }
 
 // Called every frame
