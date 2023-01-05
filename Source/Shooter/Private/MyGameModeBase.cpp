@@ -5,6 +5,7 @@
 #include "MainWidget.h"
 #include "MenuWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "Boss.h"
 
 
 void AMyGameModeBase::BeginPlay()
@@ -37,6 +38,9 @@ void AMyGameModeBase::BeginPlay()
 #pragma endregion
 
 	mainUI->PrintCurrentScore();										//print current score on the widget's uICurrentScore textblock 
+
+	//boss
+	canSpawnEnemy = true;
 }
 
 
@@ -60,6 +64,8 @@ void AMyGameModeBase::AddScore(int32 count)
 #pragma endregion
 
 	}
+
+
 	
 	if (mainUI != nullptr) {
 		//print current score on the widget's uICurrentScore textblock 

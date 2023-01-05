@@ -38,9 +38,12 @@ public:
 //Explosion Ultimate
 TArray<class AEnemy*> enemyArray;
 
+int32 currentScore = 0;
+
+bool canSpawnEnemy;
+
 private:
 #pragma region Score UI
-	int32 currentScore = 0;
 	int32 highScore = 0;
 
 	class UMainWidget* mainUI;
@@ -56,5 +59,6 @@ private:
 	//relative path
 	FString filePath2 = FString("../../../Content/SaveScores/HighScore.txt");
 #pragma endregion
+
 
 };
