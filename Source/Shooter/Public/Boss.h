@@ -35,7 +35,7 @@ public:
 	float moveTime = 10;
 
 	UPROPERTY(EditAnywhere, Category = "BossSpawnSettings")
-	FVector moveOffset;
+	FVector moveOffset =FVector(0,0,-200);
 
 	FVector direction;
 	FVector originalLocation;
