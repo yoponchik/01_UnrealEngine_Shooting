@@ -65,6 +65,10 @@ void AEnemy::BeginPlay()
 			targetDir.Normalize();					//need to normalize or else it will shoot out very far far
 		
 			direction = targetDir;
+
+			//target->playerUltimateActivate.AddDynamic(this, &AEnemy::DestroyMyself);
+
+			target->playerRedirectEnemy.AddDynamic(this, &AEnemy::RedirectEnemy);
 		}
 	}
 	else {
@@ -88,10 +92,20 @@ void AEnemy::BeginPlay()
 
 void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
-	if (gm != nullptr) {
-		gm->enemyArray.Remove(this);
+	//AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+	//if (gm != nullptr) {
+	//	gm->enemyArray.Remove(this);
+	//}
+	//target->playerUltimateActivate.RemoveDynamic(this, &AEnemy::DestroyMyself);
+	if(target != nullptr){
+		target->playerRedirectEnemy.RemoveDynamic(this, &AEnemy::RedirectEnemy);
 	}
+
+}
+
+void AEnemy::RedirectEnemy(FVector newDir)
+{
+	direction = newDir;
 }
 
 // Called every frame

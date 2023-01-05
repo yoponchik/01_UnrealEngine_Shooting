@@ -51,9 +51,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = EnemySettings)
 	class UParticleSystem* explosionFX;
 
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	UFUNCTION()
 	void DestroyMyself();
 
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	UFUNCTION()
+	void RedirectEnemy(FVector newDir);
 #pragma endregion
 
 
