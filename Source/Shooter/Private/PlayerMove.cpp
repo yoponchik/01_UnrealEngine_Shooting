@@ -284,7 +284,7 @@ void APlayerMove::UnBoost()
 
 	#pragma region Explosion Ultimate
 
-		#pragma region Explosion Ultimate: Method 1
+		#pragma region Explosion Ultimate: Method 1 - Array
 //void APlayerMove::ExplosionUltimate()
 //{
 //	TArray<AActor*> AllEnemyActors;
@@ -300,7 +300,7 @@ void APlayerMove::UnBoost()
 
 		#pragma endregion
 
-		#pragma region Explosion Ultimate: Method 2
+		#pragma region Explosion Ultimate: Method 2	- Actor Iterator
 //void APlayerMove::ExplosionUltimate()
 //{
 //	
@@ -311,30 +311,40 @@ void APlayerMove::UnBoost()
 //}
 		#pragma endregion
 
-		#pragma region Explosion Ultimate: Method3
+		#pragma region Explosion Ultimate: Method 3 - Adding Enemy to GM array
 	//uses TArray from MyGameModeBase; Enemy adds itself to that array when it's beginplay and removes itself when its endplay
-void APlayerMove::ExplosionUltimate()
-{
-	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
-
-	if(gm != nullptr){
-		TArray<AEnemy*> enemyArrayCopy = gm->enemyArray;
-		//for(int32 i = 0; i < gm->enemyArray.Num(); i++){
-		for(int32 i = 0; i < enemyArrayCopy.Num(); i++){
-		//check if in pending kill state
-			//if(IsValid(gm->enemyArray[i])){
-			if(IsValid(enemyArrayCopy[i])){
-				enemyArrayCopy[i]->DestroyMyself();
-			}
-		}
-
-		//Reset array
-		gm->enemyArray.Empty();
-	}
-}
-
-
+//void APlayerMove::ExplosionUltimate()
+//{
+//	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+//
+//	if(gm != nullptr){
+//		TArray<AEnemy*> enemyArrayCopy = gm->enemyArray;
+//		//for(int32 i = 0; i < gm->enemyArray.Num(); i++){
+//		for(int32 i = 0; i < enemyArrayCopy.Num(); i++){
+//		//check if in pending kill state
+//			//if(IsValid(gm->enemyArray[i])){
+//			if(IsValid(enemyArrayCopy[i])){
+//				enemyArrayCopy[i]->DestroyMyself();
+//			}
+//		}
+//
+//		//Reset array
+//		gm->enemyArray.Empty();
+//	}
+//}
 		#pragma endregion
+
+		#pragma region Explosion Ultimate: Method 4 - Delegation
+//void APlayerMove::ExplosionUltimate() {
+//	playerUltimateActivate.Broadcast();
+//}
+
+void APlayerMove::ExplosionUltimate() {
+	playerRedirectEnemy.Broadcast(this->GetActorRightVector());
+
+}
+		#pragma endregion
+
 
 	#pragma endregion 
 #pragma endregion

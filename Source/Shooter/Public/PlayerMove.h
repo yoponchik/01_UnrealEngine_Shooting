@@ -7,6 +7,12 @@
 #include "InputActionValue.h"				//has to be above generated.h
 #include "PlayerMove.generated.h"
 
+//Delegate to destroy all enemies
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUltimateExplosion);
+
+//delegate that takes in argument
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRedirect, FVector, newDir);
+
 
 UCLASS()
 class SHOOTER_API APlayerMove : public APawn
@@ -100,6 +106,10 @@ public:
 
 	//Trap
 	bool canFire = true;
+
+	FUltimateExplosion playerUltimateActivate;
+
+	FRedirect playerRedirectEnemy;
 
 private:
 #pragma region Player Movement
