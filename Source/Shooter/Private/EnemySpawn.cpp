@@ -4,6 +4,9 @@
 #include "EnemySpawn.h"
 #include "Enemy.h"
 #include "Components/ArrowComponent.h"
+//boss
+#include "MyGameModeBase.h"
+
 
 // Sets default values
 AEnemySpawn::AEnemySpawn()
@@ -26,6 +29,10 @@ void AEnemySpawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//Boss
+	gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+
+
 }
 
 // Called every frame
@@ -33,7 +40,12 @@ void AEnemySpawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	EnemySpawner(DeltaTime);
+	//Boss
+	if( gm!= nullptr){
+		if(gm->canSpawnEnemy){
+			EnemySpawner(DeltaTime);
+		}
+	}
 
 }
 

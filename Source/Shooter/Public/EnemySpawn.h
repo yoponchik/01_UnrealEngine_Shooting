@@ -37,6 +37,8 @@ public:
 	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
 	TSubclassOf<class AEnemy> enemyFactory;
 
+	//boss
+	class AMyGameModeBase* gm;
 
 private:
 	float currentTime;
