@@ -107,16 +107,14 @@ public:
 	//Trap
 	bool canFire = true;
 
+#pragma region Ultimate
 	FUltimateExplosion playerUltimateActivate;
 
 	FRedirect playerRedirectEnemy;
 
-private:
-#pragma region Player Movement
-	float hori;
-	float verti;
-	FVector direction;
 #pragma endregion
+
+private:
 
 #pragma region Old Input
 	//Original Horizontal function
@@ -127,6 +125,12 @@ private:
 	//UFUNCTION(BlueprintCallable)
 	//void Vertical(float value);
 #pragma endregion 
+
+#pragma region Player Movement
+	float hori;
+	float verti;
+	FVector direction;
+#pragma endregion
 
 #pragma region Input Actions : Enhanced Inputs
 	//Enhanced Horizontal function
@@ -143,9 +147,9 @@ private:
 	void Boost();
 	void UnBoost();
 
+	//Ultimate
 	UFUNCTION(BlueprintCallable)
 	void ExplosionUltimate();
-
 #pragma endregion
 
 #pragma region Change Color
@@ -154,6 +158,5 @@ private:
 	FTimerHandle colorTimer;
 	UMaterialInstanceDynamic* dynamicMat;
 #pragma endregion
-
 
 };

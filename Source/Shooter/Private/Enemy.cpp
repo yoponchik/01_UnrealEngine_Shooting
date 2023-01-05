@@ -74,6 +74,7 @@ void AEnemy::BeginPlay()
 	else {
 		direction = GetActorForwardVector();
 	}
+
 #pragma endregion
 
 #pragma region Setup Collision
@@ -96,11 +97,12 @@ void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	//if (gm != nullptr) {
 	//	gm->enemyArray.Remove(this);
 	//}
+
 	//target->playerUltimateActivate.RemoveDynamic(this, &AEnemy::DestroyMyself);
+
 	if(target != nullptr){
 		target->playerRedirectEnemy.RemoveDynamic(this, &AEnemy::RedirectEnemy);
 	}
-
 }
 
 void AEnemy::RedirectEnemy(FVector newDir)
@@ -148,8 +150,6 @@ void AEnemy::DestroyMyself()
 	
 	Destroy();
 }
-
-
 
 #pragma endregion
 
