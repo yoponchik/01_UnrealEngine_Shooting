@@ -56,7 +56,7 @@ void ABossSpawner::SpawnBoss()
 	(gm->canSpawnEnemy) = false;
 
 	GetWorld()->SpawnActor<ABoss>(bossFactory, arrowComp->GetComponentLocation(), arrowComp->GetComponentRotation());
-	UE_LOG(LogTemp, Warning, TEXT("Spawning Boss"));
+	//UE_LOG(LogTemp, Warning, TEXT("Spawning Boss"));
 	isDoneSpawn = true;
 }
 
@@ -66,9 +66,9 @@ void ABossSpawner::CheckSpawnTime()
 	if (isSpawn) { return; }
 
 	if (gm != nullptr) {
-		if ((gm->currentScore) > 2) {
+		if ((gm->currentScore) > bossLevelScore) {
 			isSpawn = true;
-			UE_LOG(LogTemp, Warning, TEXT("Spawn Boss"));
+			//UE_LOG(LogTemp, Warning, TEXT("Spawn Boss"));
 		}
 	}
 }

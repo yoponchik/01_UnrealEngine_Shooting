@@ -32,18 +32,17 @@ public:
 
 	class AMyGameModeBase* gm;
 
-	void SpawnBoss();
-
-	void CheckSpawnTime();
-
 	bool isSpawn;
 
 	bool isDoneSpawn;
 
+	int32 bossLevelScore = 30;
+
 	UPROPERTY(EditAnywhere, Category = "BossSpawnSettings")
 	TSubclassOf<class ABoss> bossFactory;
 
-private:
+	void SpawnBoss();
 
+	void CheckSpawnTime();
 
 };
