@@ -66,14 +66,18 @@ void AEnemy::BeginPlay()
 		
 			direction = targetDir;
 
-			//target->playerUltimateActivate.AddDynamic(this, &AEnemy::DestroyMyself);
+			//target->OnPlayerUltimateActivate.AddDynamic(this, &AEnemy::DestroyMyself);
 
-			target->playerRedirectEnemy.AddDynamic(this, &AEnemy::RedirectEnemy);
 		}
 	}
 	else {
 		direction = GetActorForwardVector();
 	}
+
+	if(target != nullptr){
+		target->OnPlayerRedirectEnemy.AddDynamic(this, &AEnemy::RedirectEnemy);
+	}
+
 
 #pragma endregion
 
@@ -89,6 +93,7 @@ void AEnemy::BeginPlay()
 	if(gm!=nullptr){
 		gm->enemyArray.Add(this);
 	}
+
 }
 
 void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -98,10 +103,10 @@ void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	//	gm->enemyArray.Remove(this);
 	//}
 
-	//target->playerUltimateActivate.RemoveDynamic(this, &AEnemy::DestroyMyself);
 
 	if(target != nullptr){
-		target->playerRedirectEnemy.RemoveDynamic(this, &AEnemy::RedirectEnemy);
+		target->OnPlayerUltimateActivate.RemoveDynamic(this, &AEnemy::DestroyMyself);
+		target->OnPlayerRedirectEnemy.RemoveDynamic(this, &AEnemy::RedirectEnemy);
 	}
 }
 
