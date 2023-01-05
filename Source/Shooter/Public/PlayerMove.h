@@ -108,9 +108,9 @@ public:
 	bool canFire = true;
 
 #pragma region Ultimate
-	FUltimateExplosion playerUltimateActivate;
+	FUltimateExplosion OnPlayerUltimateActivate;
 
-	FRedirect playerRedirectEnemy;
+	FRedirect OnPlayerRedirectEnemy;
 
 #pragma endregion
 

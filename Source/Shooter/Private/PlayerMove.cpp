@@ -340,7 +340,7 @@ void APlayerMove::UnBoost()
 //}
 
 void APlayerMove::ExplosionUltimate() {
-	playerRedirectEnemy.Broadcast(this->GetActorRightVector());
+	OnPlayerRedirectEnemy.Broadcast(this->GetActorRightVector());
 
 }
 		#pragma endregion
