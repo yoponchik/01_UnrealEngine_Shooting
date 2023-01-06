@@ -34,18 +34,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
 	float moveSpeed = 900;
 
-#pragma region Collision
-	UFUNCTION()
-	void OnOverlap(UPrimitiveComponent* OverlappedComponent, 
-		AActor* OtherActor, 
-		UPrimitiveComponent* OtherComp, 
-		int32 OtherBodyIndex, 
-		bool bFromSweep, 
-		const FHitResult& SweepResult);
-
-	UPROPERTY(EditDefaultsOnly, Category = BulletSettings);
-	class UParticleSystem* explosionEffect;
-#pragma endregion
+	//boss enemybullet
+	void SetBulletDirection(FVector angleInput);
 
 private:
 	FVector myDirection;
