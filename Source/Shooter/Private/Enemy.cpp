@@ -39,7 +39,6 @@ AEnemy::AEnemy()
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh"));
 	meshComp->SetupAttachment(RootComponent);
 #pragma endregion 
-
 }
 
 // Called when the game starts or when spawned
@@ -47,18 +46,28 @@ void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	
+#pragma region Find Target
+//Moved here for the Player Abilities
+	for (TActorIterator<APlayerMove> it(GetWorld()); it; ++it) {
+		target = *it;
+	}
+#pragma endregion
+	
 #pragma region Enemy Direction
 	float randomNum = FMath::RandRange(0.1f, 1.0f);       //get random number
 
 	if (randomNum <= followProb) {
+
+		#pragma region Find Target: Deprecated
 		//method 1 of finding player
 		//AActor* target = UGameplayStatics::GetActorOfClass(GetWorld(), APlayerMove::StaticClass());
 
 		//method 2 of finding player
 		//APlayerMove* target;
-		for (TActorIterator<APlayerMove> it(GetWorld()); it; ++it) {
-			target = *it;
-		}
+		//for (TActorIterator<APlayerMove> it(GetWorld()); it; ++it) {
+		//	target = *it;
+		//}
+		#pragma endregion
 		
 		if (target != nullptr) {
 			FVector targetDir = target->GetActorLocation() - GetActorLocation();
@@ -88,34 +97,15 @@ void AEnemy::BeginPlay()
 	boxComp->SetGenerateOverlapEvents(true);
 #pragma endregion
 
-	//add self to array
-	AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
-	if(gm!=nullptr){
-		gm->enemyArray.Add(this);
-	}
-
-}
-
-void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
+#pragma region Player Abilities: Deprecated
+	//add self to array; for destroy myself
 	//AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
-	//if (gm != nullptr) {
-	//	gm->enemyArray.Remove(this);
+	//if(gm!=nullptr){
+	//	gm->enemyArray.Add(this);
 	//}
-
-
-	if(target != nullptr){
-		target->OnPlayerUltimateActivate.RemoveDynamic(this, &AEnemy::DestroyMyself);
-		target->OnPlayerRedirectEnemy.RemoveDynamic(this, &AEnemy::RedirectEnemy);
-	}
+#pragma endregion
 }
 
-void AEnemy::RedirectEnemy(FVector newDir)
-{
-	direction = newDir;
-}
-
-// Called every frame
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -125,7 +115,25 @@ void AEnemy::Tick(float DeltaTime)
 #pragma endregion 
 }
 
+void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+#pragma region Destroy Myself - Game Mode Array Method
+	//AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());
+	//if (gm != nullptr) {
+	//	gm->enemyArray.Remove(this);
+	//}
+#pragma endregion
+
+#pragma region Destroy Myself - Game Mode Array Method
+	if (target != nullptr) {
+		target->OnPlayerUltimateActivate.RemoveDynamic(this, &AEnemy::DestroyMyself);
+		target->OnPlayerRedirectEnemy.RemoveDynamic(this, &AEnemy::RedirectEnemy);
+	}
+#pragma endregion
+}
+
 #pragma region Collision
+//When the enemy hits the player
 void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	APlayerMove* player = Cast<APlayerMove>(OtherActor);
@@ -137,6 +145,7 @@ void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherAc
 		//Call function that brings up the menu widget
 		AMyGameModeBase* gm = Cast<AMyGameModeBase>(GetWorld()->GetAuthGameMode());			//second method of getting the gamemode
 
+		//Game Over
 		if(gm != nullptr){
 			gm->ShowMenu();
 		}
@@ -148,14 +157,20 @@ void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherAc
 		Destroy();
 	}
 }
+#pragma endregion
+
+#pragma region Player Abilities
+
+void AEnemy::RedirectEnemy(FVector newDir)
+{
+	direction = newDir;
+}
 
 void AEnemy::DestroyMyself()
 {
 	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionFX, GetActorLocation(), GetActorRotation(), true);
-	
+
 	Destroy();
 }
-
 #pragma endregion
-
 
