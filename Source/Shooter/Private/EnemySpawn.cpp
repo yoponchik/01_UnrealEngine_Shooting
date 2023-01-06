@@ -44,7 +44,6 @@ void AEnemySpawn::Tick(float DeltaTime)
 			EnemySpawner(DeltaTime);
 		}
 	}
-
 }
 
 #pragma region Enemy Spawner

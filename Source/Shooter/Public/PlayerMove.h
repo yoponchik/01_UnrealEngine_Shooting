@@ -111,7 +111,6 @@ public:
 	FUltimateExplosion OnPlayerUltimateActivate;
 
 	FRedirect OnPlayerRedirectEnemy;
-
 #pragma endregion
 
 private:

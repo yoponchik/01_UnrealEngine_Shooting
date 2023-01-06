@@ -37,11 +37,12 @@ public:
 	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
 	TSubclassOf<class AEnemy> enemyFactory;
 
-	//boss
-	class AMyGameModeBase* gm;
 
 private:
+	void EnemySpawner(float deltaTime);
+
 	float currentTime;
 
-	void EnemySpawner(float deltaTime);
+	//boss
+	class AMyGameModeBase* gm;
 };

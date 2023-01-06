@@ -24,25 +24,25 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+#pragma region Components
 	UPROPERTY(EditInstanceOnly, Category = "BossSettings")
 	class USceneComponent* sceneComp;
 
 	UPROPERTY(EditInstanceOnly, Category = "BossSettings")
 	class UArrowComponent* arrowComp;
+#pragma endregion
 
 	class AMyGameModeBase* gm;
-
-	bool isSpawn;
-
-	bool isDoneSpawn;
-
-	int32 bossLevelScore = 30;
 
 	UPROPERTY(EditAnywhere, Category = "BossSpawnSettings")
 	TSubclassOf<class ABoss> bossFactory;
 
-	void SpawnBoss();
-
 	void CheckSpawnTime();
 
+	void SpawnBoss();
+
+	bool isSpawn;
+	bool isDoneSpawn;
+
+	int32 bossLevelScore = 2;
 };

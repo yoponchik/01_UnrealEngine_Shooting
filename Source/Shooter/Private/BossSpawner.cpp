@@ -13,11 +13,14 @@ ABossSpawner::ABossSpawner()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+#pragma region Components
 	sceneComp = CreateDefaultSubobject<USceneComponent>("Scene Component");
 	SetRootComponent(sceneComp);
 
 	arrowComp = CreateDefaultSubobject<UArrowComponent>("Arrow Component");
 	arrowComp->SetupAttachment(RootComponent);
+#pragma endregion
 }
 
 // Called when the game starts or when spawned
@@ -30,7 +33,6 @@ void ABossSpawner::BeginPlay()
 
 	isSpawn = false;
 	isDoneSpawn = false;
-
 }
 
 // Called every frame
@@ -43,7 +45,6 @@ void ABossSpawner::Tick(float DeltaTime)
 	if(isSpawn){
 		SpawnBoss();
 	}
-
 }
 
 
