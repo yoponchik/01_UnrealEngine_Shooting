@@ -29,15 +29,46 @@ public:
 	UPROPERTY(EditAnywhere, Category = BossSettings)
 	class UStaticMeshComponent* meshComp;
 
-	UPROPERTY(EditAnywhere, Category = "BossSettings")
+	UPROPERTY(EditAnywhere, Category = BossSettings)
 	float moveTime = 10;
 
-	UPROPERTY(EditAnywhere, Category = "BossSettings")
+	UPROPERTY(EditAnywhere, Category = BossSettings)
 	FVector moveOffset =FVector(0,0,-200);
 	
 	void MoveBoss(float tick);
 
+	//boss attack
+#pragma region Boss Attack
+	UFUNCTION()
+	void BossAttack1(float angle, int32 bulletNumber);
+	
+	void BossPatternUpdate(float tick);
+
+#pragma region My Boss Attack
+	UFUNCTION()
+	void MyBossAttack1(int32 bulletNumber, int32 bulletDistance, bool isFullAttack);
+
+	UPROPERTY(EditAnywhere, Category = BossSetings)
+	int32 bossBulletNumber = 6;
+
+	UPROPERTY(EditAnywhere, Category = BossSetings)
+	int32 bossBulletDistance = 100;
+	
+	bool isBossFullAttack = true;
+#pragma endregion
+
+	//enemybullet
+	UPROPERTY(EditAnywhere, Category = BossSetings)
+	TSubclassOf<class AEnemyBullet> enemyBulletFactory;
+
+	float patternDelayTime = 3;
+#pragma endregion
+
+
 private:
 	FVector direction;
 	FVector originalLocation;
+
+	//Boss Attack
+	float currentTime=0;
 };
