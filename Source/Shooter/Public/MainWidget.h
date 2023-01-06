@@ -16,12 +16,15 @@ class SHOOTER_API UMainWidget : public UUserWidget
 	
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI Settings|Score", meta = (BindWidget));
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI Settings|Score Text", meta = (BindWidget));
 	class UTextBlock* uICurrentScore;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI Settings|Score", meta = (BindWidget));
-	class UTextBlock* uIHighScore;
-	    
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI Settings|Score Text", meta = (BindWidget));
+	class UTextBlock* uIHighScore;	
+	
 	void PrintCurrentScore();
+	    
+	UPROPERTY(EditAnywhere, Category = "UI Settings|Score Animation", meta = (BindWidgetAnim), Transient);
+	class UWidgetAnimation* scoreAnim;
 
 };

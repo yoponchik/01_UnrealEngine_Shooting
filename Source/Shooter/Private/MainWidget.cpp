@@ -18,10 +18,12 @@ void UMainWidget::PrintCurrentScore()
 		//change uIcurrrentScore's text
 		uICurrentScore->SetText(scoreText);
 		
-		//change high score (int) type to SetText 
 		FText highScoreText = FText::AsNumber(myGM->GetHighScore());
 
 		//change uIHighScore's text
 		uIHighScore->SetText(highScoreText);
+
+		//play scoreAnim
+		PlayAnimation(scoreAnim,0, 1, EUMGSequencePlayMode::Forward);
 	}
 }
