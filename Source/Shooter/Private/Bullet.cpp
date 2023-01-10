@@ -17,7 +17,7 @@ ABullet::ABullet()
 	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));			//Create box collider component
 	SetRootComponent(boxComp);														//Set as root		
 	boxComp->SetBoxExtent(FVector(50));												//change box size
-	boxComp->SetWorldScale3D(FVector(0.75f, 0.25f, 1.00f));
+	boxComp->SetWorldScale3D(FVector( 0.25f, .1f, .1f));
 
 
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh"));	//crate SN component
