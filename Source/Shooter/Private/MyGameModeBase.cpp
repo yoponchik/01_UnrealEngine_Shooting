@@ -19,8 +19,9 @@ void AMyGameModeBase::BeginPlay()
 #pragma region Load High Score
 	//read the file to bring the high score
 	FString scoreText;
+
 	//bool isLoadSuccess = FFileHelper::LoadFileToString(scoreText, *filePath);
-	bool isLoadSuccess = FFileHelper::LoadFileToString(scoreText, *filePath2);
+	bool isLoadSuccess = FFileHelper::LoadFileToString(scoreText, *filePath2);							//Changing to a relative path
 
 #pragma region Debug
 	//if(isLoadSuccess){
@@ -38,6 +39,9 @@ void AMyGameModeBase::BeginPlay()
 #pragma endregion
 
 	mainUI->PrintCurrentScore();										//print current score on the widget's uICurrentScore textblock 
+
+
+	FString testPath = FPaths::ProjectContentDir() + TEXT("SaveScore/SaveScore.txt");
 
 	//boss
 	canSpawnEnemy = true;
