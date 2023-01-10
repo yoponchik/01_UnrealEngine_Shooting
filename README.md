@@ -23,7 +23,7 @@ _A 2D Shooting Game_
 ![enemy](https://user-images.githubusercontent.com/57009810/211540549-1a8ea26a-de65-4644-86db-89bf8b611c18.png)
 
 
-<h3> 4. Enemy </h3>
+<h3> Enemy </h3>
 
 ![Screenshot 2023-01-10 201446](https://user-images.githubusercontent.com/57009810/211537535-bcc7494b-f53a-43f8-b11c-429580c327ed.png)
 
@@ -31,24 +31,27 @@ _A 2D Shooting Game_
 
 ![Enemyspawn](https://user-images.githubusercontent.com/57009810/211540783-0ec67767-2922-41fc-acff-aab6d2c88754.png)
 
-<h2> 5. Boss Settings </h2>
+<h2> 4. Boss Settings </h2>
 
 <h3> Boss</h3> 
 
 ![Boss](https://user-images.githubusercontent.com/57009810/211541566-cd2d9972-d646-4422-8f76-c31012dd33c2.png)
 
+![Boss](https://user-images.githubusercontent.com/57009810/211542174-f73aee1a-1b93-4766-90f0-fdb7eacadd18.png)
+
 <h3> Boss Spawn</h3>
+
+![Screenshot 2023-01-10 201608](https://user-images.githubusercontent.com/57009810/211537832-10f1f349-854f-4e6e-b588-5e419eaff24c.png)
+
+![Boss Spawn](https://user-images.githubusercontent.com/57009810/211541986-2e500ba5-83cd-4bc9-9cec-fcd9273277c5.png)
+
 
 <h3> Boss Bullets</h3>
 
 ![Enemy Bullet Settings](https://user-images.githubusercontent.com/57009810/211541553-9ba9a102-c6bb-40c6-a130-05e5383a15f1.png)
 
 
-<h2> 6. Boss Spawn Settings </h2>
-
-![Screenshot 2023-01-10 201608](https://user-images.githubusercontent.com/57009810/211537832-10f1f349-854f-4e6e-b588-5e419eaff24c.png)
-
-<h2> 7. Misc Settings </h2>
+<h2> 5. Misc Settings </h2>
 
 <h3> Kill Zone</h3> 
 
@@ -56,7 +59,7 @@ _A 2D Shooting Game_
 
 <h3> Trap </h3> 
 
-<h3> Collision Presets</h3> 
+<h2> 6. Collision Presets</h2> 
 
 <h4> Player </h4> 
 
