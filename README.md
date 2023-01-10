@@ -14,7 +14,7 @@ _A 2D Shooting Game_
 <h4> Boost -  Left Shift </h4>
 <h4> Ultimate -  Spacebar </h4>
 
-<h2> 2. BP_PlayerMove Settings </h2>
+<h2> 2. Player Settings </h2>
 
 ![Screenshot 2023-01-10 201720](https://user-images.githubusercontent.com/57009810/211537445-24934e54-d196-409c-9d6c-80e645faee49.png)
 
