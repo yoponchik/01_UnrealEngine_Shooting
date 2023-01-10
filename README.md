@@ -9,7 +9,10 @@ _A 2D Shooting Game_
 -------
 <h2> 1. Controls </h2>
 
-<h4> Movement</h4> -  WASD 
+<h4> Movement - WASD </h4> 
 <h4> Shoot -  Left Mouse Click </h4>
 <h4> Boost -  Left Shift </h4>
 <h4> Ultimate -  Spacebar </h4>
+
+<h2> 2. Player Settings </h2>
+_BP_PlayerMove_
