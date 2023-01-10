@@ -33,6 +33,6 @@ _A 2D Shooting Game_
 
 <h2> 6. misc Settings </h2>
 
-<h4> Kill Zone</h4> 
+<h3> Kill Zone</h3> 
 
 ![Screenshot 2023-01-10 201522](https://user-images.githubusercontent.com/57009810/211537808-4a4bdfdf-fd23-422b-95d2-c424916093ed.png)
