@@ -31,7 +31,7 @@ _A 2D Shooting Game_
 
 ![Screenshot 2023-01-10 201608](https://user-images.githubusercontent.com/57009810/211537832-10f1f349-854f-4e6e-b588-5e419eaff24c.png)
 
-<h2> 7. misc Settings </h2>
+<h2> 7. Misc Settings </h2>
 
 <h3> Kill Zone</h3> 
 
