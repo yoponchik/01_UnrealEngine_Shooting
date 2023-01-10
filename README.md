@@ -14,5 +14,5 @@ _A 2D Shooting Game_
 <h4> Boost -  Left Shift </h4>
 <h4> Ultimate -  Spacebar </h4>
 
-<h2> 2. Player Settings </h2>
-_BP_PlayerMove_
+<h2> 2. BP_PlayerMove Settings </h2>
+
