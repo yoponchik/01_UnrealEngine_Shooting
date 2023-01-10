@@ -21,17 +21,17 @@ _A 2D Shooting Game_
 <h2> 3. Enemy Settings </h2>
 
 
-<h2> 3. Enemy Spawn Settings </h2>
+<h2> 4. Enemy Spawn Settings </h2>
 
 ![Screenshot 2023-01-10 201446](https://user-images.githubusercontent.com/57009810/211537535-bcc7494b-f53a-43f8-b11c-429580c327ed.png)
 
-<h2> 4. Boss Settings </h2>
+<h2> 5. Boss Settings </h2>
 
-<h2> 5. Boss Spawn Settings </h2>
+<h2> 6. Boss Spawn Settings </h2>
 
 ![Screenshot 2023-01-10 201608](https://user-images.githubusercontent.com/57009810/211537832-10f1f349-854f-4e6e-b588-5e419eaff24c.png)
 
-<h2> 6. misc Settings </h2>
+<h2> 7. misc Settings </h2>
 
 <h3> Kill Zone</h3> 
 
