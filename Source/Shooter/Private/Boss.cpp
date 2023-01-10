@@ -75,7 +75,7 @@ void ABoss::BossPatternUpdate(float tick)
 		BossAttack1(15, 6);
 
 		//My try; buggy
-		//MyBossAttack1(bossBulletNumber, bossBulletNumber, isBossFullAttack);
+		//MyBossAttack1(bossBulletNumber, bossBulletDistance isBossFullAttack);
 		currentTime = 0;
 	}
 	else {
@@ -114,7 +114,7 @@ void ABoss::BossAttack1(float angle, int32 bulletNumber)
 	float startAngle = 270 - (angle*(bulletNumber -1)*0.5f);
 
 	for(int32 i = 0; i < bulletNumber; i++){
-		FVector bulletPivotAngle = FVector(0, 1000 * FMath::Cos(FMath::DegreesToRadians(startAngle + angle * i)), 1000 * FMath::Sin(FMath::DegreesToRadians(startAngle + angle * i)));
+		FVector bulletPivotAngle = FVector(0, bossBulletDistance * FMath::Cos(FMath::DegreesToRadians(startAngle + angle * i)), bossBulletDistance * FMath::Sin(FMath::DegreesToRadians(startAngle + angle * i)));
 
 		//Method 1
 		//must test - changing the moving direction
@@ -132,37 +132,36 @@ void ABoss::BossAttack1(float angle, int32 bulletNumber)
 #pragma endregion
 
 #pragma region My Boss Attack - Buggy
-void ABoss::MyBossAttack1(int32 bulletNumber, int32 bulletDistance, bool isFullAttack){
-	
-	float theta = 0;
-
-	if(isBossFullAttack){			//round attack
-		theta = 2 * PI; 
-	}
-	else{							//front attack
-		theta = PI;
-	}
-
-	theta /= bossBulletNumber;
-
-	for(int32 i = 0; i < bulletNumber; i++){
-
-		FVector bulletPosition;
-
-		bulletPosition.Y = bulletDistance * FMath::Sin(theta);  
-		bulletPosition.Z = bulletDistance * FMath::Cos(theta);  
-		 
-		FRotator bulletRotation = FRotator(0, theta + (theta * i),0);
-
-		//AEnemyBullet* enemyBullet = GetWorld()->SpawnActor<AEnemyBullet>(enemyBulletFactory, bulletPosition, bulletRotation);
-		AEnemyBullet* enemyBullet = GetWorld()->SpawnActor<AEnemyBullet>(enemyBulletFactory, bulletPosition, FRotator::ZeroRotator);
-
-		if (enemyBullet != nullptr)
-		{
-			enemyBullet->AddActorLocalRotation(bulletRotation);
-		}
-
-	}
-	
-}
+//void ABoss::MyBossAttack1(int32 bulletNumber, int32 bulletDistance, bool isFullAttack){
+//	
+//	float theta = 0;
+//
+//	if(isBossFullAttack){			//round attack
+//		theta = 2 * PI; 
+//	}
+//	else{							//front attack
+//		theta = PI;
+//	}
+//
+//	theta /= bossBulletNumber;
+//
+//	for(int32 i = 0; i < bulletNumber; i++){
+//
+//		FVector bulletPosition;
+//
+//		bulletPosition.Y = bulletDistance * FMath::Sin(theta);  
+//		bulletPosition.Z = bulletDistance * FMath::Cos(theta);  
+//		 
+//		FRotator bulletRotation = FRotator(0, theta + (theta * i),0);
+//
+//		AEnemyBullet* enemyBullet = GetWorld()->SpawnActor<AEnemyBullet>(enemyBulletFactory, bulletPosition, bulletRotation);
+//
+//		if (enemyBullet != nullptr)
+//		{
+//			enemyBullet->AddActorLocalRotation(bulletRotation);
+//		}
+//
+//	}
+//	
+//}
 #pragma endregion
