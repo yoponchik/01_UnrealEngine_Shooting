@@ -155,7 +155,7 @@ _bossLevelScore = 3_
 
 _bossLevelScore = 5_
 
-![bossLevelScore5](https://user-images.githubusercontent.com/57009810/211735560-9982a177-aaad-4138-88a1-2d8d510511c2.png)
+![bossLevelScore6](https://user-images.githubusercontent.com/57009810/211777734-2a525d5a-dd57-426c-8f2d-0cae2ded9756.png)
 
 ![bossLevelScore5](https://user-images.githubusercontent.com/57009810/211735698-2984a1a8-5fed-472b-b6d1-474a8e929fa1.gif)
 
