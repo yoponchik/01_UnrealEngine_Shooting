@@ -34,60 +34,58 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-#pragma region Component 
-
+#pragma region Components
 	//building a component
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = PlayerSettings)
-		class UBoxComponent* boxComp;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "PlayerSettings | Components")
+	class UBoxComponent* boxComp;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = PlayerSettings)
-		class UStaticMeshComponent* meshComp;
-
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "PlayerSettings | Components")
+	class UStaticMeshComponent* meshComp;
 #pragma endregion
 
 #pragma region PlayerMovement
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
-	float moveSpeed = 500;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerSettings | Movement")
 	float regularSpeed = 500;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerSettings | Movement")
 	float boostSpeed = 800;
 #pragma endregion
 
 #pragma region PlayerFire
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerSettings)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerSettings | Gun")
 	TSubclassOf<class ABullet> bulletFactory;
 
-	UPROPERTY(EditAnywhere, Category = PlayerSettings)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerSettings | Gun")
 	int32 bulletCount = 3;
 
-	UPROPERTY(EditAnywhere, Category = PlayerSettings)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerSettings | Gun")
 	float bulletSpacing = 150;
 
-	UPROPERTY(EditAnywhere, Category = PlayerSettings)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerSettings | Gun")
 	float bulletAngle = 30;
 #pragma endregion
 
 #pragma region Input Actions : Enhanced Inputs
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | Inputs")
 	class UInputMappingContext* iMCMyMapping;
 
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | Inputs")
 	class UInputAction* iAHorizontal;	
 
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | Inputs")
 	class UInputAction* iAVertical;	
 
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | Inputs")
 	class UInputAction* iAFire;
 	
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | Inputs")
 	class UInputAction* iABoost;
 
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
-	class UInputAction* iAExplosionUltimate;
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | Inputs")
+	class UInputAction* iAExplosionUltimate;	
+
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | Inputs")
+	class UInputAction* iARedirectUltimate;
 #pragma endregion
 
 #pragma region Change Color
@@ -96,7 +94,7 @@ public:
 #pragma endregion
 
 	//SFX
-	UPROPERTY(EditDefaultsOnly, Category = PlayerSettings)
+	UPROPERTY(EditDefaultsOnly, Category = "PlayerSettings | SFX")
 	class USoundBase* bulletSound;
 
 #pragma region Spin
@@ -126,6 +124,8 @@ private:
 #pragma endregion 
 
 #pragma region Player Movement
+	float moveSpeed = 500;
+
 	float hori;
 	float verti;
 	FVector direction;
@@ -148,7 +148,10 @@ private:
 
 	//Ultimate
 	UFUNCTION(BlueprintCallable)
-	void ExplosionUltimate();
+	void ExplosionUltimate();	
+		
+	UFUNCTION(BlueprintCallable)
+	void RedirectUltimate();
 #pragma endregion
 
 #pragma region Change Color

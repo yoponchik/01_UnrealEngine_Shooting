@@ -23,7 +23,7 @@ APlayerMove::APlayerMove()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-#pragma region Initialize Colliders Meshes
+#pragma region Initializing Components & Automatically Adding a Static Mesh
 
 	//Initialize Collision Component
 	boxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
@@ -55,7 +55,6 @@ APlayerMove::APlayerMove()
 #pragma region Collision
 	boxComp->SetCollisionProfileName(TEXT("PlayerCollisionPreset"));
 	meshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
 #pragma endregion
 
 }
@@ -162,6 +161,8 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	enhancedInputComponent->BindAction(iAExplosionUltimate, ETriggerEvent::Triggered, this, &APlayerMove::ExplosionUltimate);
 
+	enhancedInputComponent->BindAction(iARedirectUltimate, ETriggerEvent::Triggered, this, &APlayerMove::RedirectUltimate);
+
 }
 
 #pragma region Old Input Functions
@@ -181,9 +182,8 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //	//UE_LOG(LogTemp, Warning, TEXT("h: %.4f"), verti);
 //	direction.Z = verti;
 //}
-#pragma endregion
 
-#pragma region Old Fire Bullet
+	#pragma region Old Fire Bullet
 //void APlayerMove::FireBullet()
 //{
 //	//set spawn position
@@ -203,7 +203,10 @@ void APlayerMove::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //	//SFX for the bullet
 //	UGameplayStatics::PlaySound2D(this, bulletSound);
 //}
+	#pragma endregion
 #pragma endregion
+
+
 
 #pragma region Enhanced Input Functions
 //Enhanced Horizontal Function
@@ -335,13 +338,13 @@ void APlayerMove::UnBoost()
 		#pragma endregion
 
 		#pragma region Explosion Ultimate: Method 4 - Delegation
-//void APlayerMove::ExplosionUltimate() {
-//	playerUltimateActivate.Broadcast();
-//}
-
 void APlayerMove::ExplosionUltimate() {
-	OnPlayerRedirectEnemy.Broadcast(this->GetActorRightVector());
+	OnPlayerUltimateActivate.Broadcast();
+}
 
+void APlayerMove::RedirectUltimate() {
+	OnPlayerRedirectEnemy.Broadcast(this->GetActorRightVector());
+	UE_LOG(LogTemp, Warning, TEXT("player: Redirect"));
 }
 		#pragma endregion
 
