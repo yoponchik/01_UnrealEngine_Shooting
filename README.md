@@ -25,7 +25,7 @@ Ultimate: Redirect All - Left Control
 
 <h3> Gun </h3>
 
-![bullet](https://user-images.githubusercontent.com/57009810/211697943-080f915c-e335-4d0b-800f-7b20fa506bc3.gif)
+![bullet](https://user-images.githubusercontent.com/57009810/211698075-0679ac59-a534-4e2d-8c8a-e46a0f0d5dcc.gif)
 
 
 <h4> Bullet Count </h4>
