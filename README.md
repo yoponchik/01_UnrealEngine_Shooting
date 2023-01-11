@@ -30,9 +30,9 @@ Ultimate: Redirect All - Left Control
 ![bullet](https://user-images.githubusercontent.com/57009810/211698159-61efea69-f00e-440a-90d8-757f85ad6022.gif)
 
 
-<h4> Bullet Count </h4>
+<ins><h4> Bullet Count </h4></ins>
 
-<ins>bulletCount = 2</ins>
+bulletCount = 2
 
 ![bCount2](https://user-images.githubusercontent.com/57009810/211721069-d937000f-f1d3-4110-b0a7-c00d215bad1d.png)
 
