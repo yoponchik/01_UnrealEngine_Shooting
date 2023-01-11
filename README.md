@@ -135,13 +135,15 @@ The attack cycle time.
 
 <ins> Boss Level Score</ins>
 
-bossLevelScore = 3
+The amount of score to spawn the Boss. 
+
+_bossLevelScore = 3_
 
 ![bossLevelScore3](https://user-images.githubusercontent.com/57009810/211735547-0480065b-645d-454d-8490-9cf2aa4fa023.png)
 
 ![bossLevelScore3](https://user-images.githubusercontent.com/57009810/211756863-9b84ea17-82ef-4a45-aa5c-1f917426e42d.gif)
 
-bossLevelScore = 5
+_bossLevelScore = 5_
 
 ![bossLevelScore5](https://user-images.githubusercontent.com/57009810/211735560-9982a177-aaad-4138-88a1-2d8d510511c2.png)
 
