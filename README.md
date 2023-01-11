@@ -151,15 +151,29 @@ _bossLevelScore = 5_
 
 <h3> Boss Bullets</h3>
 
+The speed of the Boss' bullets.
+
 ![Enemy Bullet Settings](https://user-images.githubusercontent.com/57009810/211541553-9ba9a102-c6bb-40c6-a130-05e5383a15f1.png)
 
 <h2> 6. Misc Settings </h2>
 
 <h3> Kill Zone</h3> 
 
+The actor that destroys bullets and enemys when collided with. 
+
 ![Screenshot 2023-01-10 201522](https://user-images.githubusercontent.com/57009810/211537808-4a4bdfdf-fd23-422b-95d2-c424916093ed.png)
 
 <h3> Trap </h3> 
+
+A Black Hole that appears and disappears at random locations. While the player is touching the Trap actor, the player cannot shoot. 
+
+![Trap](https://user-images.githubusercontent.com/57009810/211761723-e37e0902-7603-4fa7-8b15-f3944843ef85.png)
+
+![Trap Settings](https://user-images.githubusercontent.com/57009810/211761809-7bd0d2b4-07c3-4433-b9dd-0d2bed6e3604.png)
+
+<ins>Teleport Time</ins>
+
+The spawn time interval.  
 
 <h2> 6. Collision Presets</h2> 
 
