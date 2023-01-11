@@ -15,7 +15,9 @@ Shoot -  Left Mouse Click
 
 Boost -  Left Shift
 
-Ultimate -  Spacebar
+Ultimate: Destroy All -  Spacebar
+
+Ultimate: Redirect All - Left Control
 
 <h2> 2. Player Settings </h2>
 
