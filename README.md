@@ -62,9 +62,6 @@ bulletAngle = 60
 
 ![enemy](https://user-images.githubusercontent.com/57009810/211540549-1a8ea26a-de65-4644-86db-89bf8b611c18.png)
 
-
-
-
 <ins> Enemy Follow Probability </ins>
 
 followProb = 0.3
@@ -79,11 +76,11 @@ followProb = 1
 
 ![followProbability1](https://user-images.githubusercontent.com/57009810/211728097-e1fcac05-93e8-4b32-a0e6-47bce2dff76e.gif)
 
-<h3> Enemy Spawn</h3>
-
-![Enemyspawn](https://user-images.githubusercontent.com/57009810/211540783-0ec67767-2922-41fc-acff-aab6d2c88754.png)
+<h2>Enemy Spawn Settings</h2>
 
 ![Screenshot 2023-01-10 201446](https://user-images.githubusercontent.com/57009810/211537535-bcc7494b-f53a-43f8-b11c-429580c327ed.png)
+
+![Enemyspawn](https://user-images.githubusercontent.com/57009810/211540783-0ec67767-2922-41fc-acff-aab6d2c88754.png)
 
 <h2> 4. Boss Settings </h2>
 
