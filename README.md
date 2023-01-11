@@ -15,9 +15,9 @@ Shoot -  Left Mouse Click
 
 Boost -  Left Shift
 
-Ultimate: Destroy All -  Spacebar
+Special Power: Destroy All -  Spacebar
 
-Ultimate: Redirect All - Left Control
+Special Power: Redirect All - Left Control
 
 <h2> 2. Player Settings </h2>
 
@@ -56,6 +56,16 @@ _bulletAngle = 60_
 ![bulletAngle60](https://user-images.githubusercontent.com/57009810/211726384-9633d70c-ef69-402d-bf4b-0bf3eb502687.png)
 
 ![bulletAngle60](https://user-images.githubusercontent.com/57009810/211726394-839cadb3-a1b7-40d4-b6d9-e0c0c0283344.gif)
+
+<h3> Special Powers </h3>
+
+<ins> Redirect </ins>
+
+![Redirect](https://user-images.githubusercontent.com/57009810/211763941-674cc144-ad9a-4a2d-a72e-fac62cbc8dc7.gif)
+
+<ins> Detonate </ins>
+
+![Explode](https://user-images.githubusercontent.com/57009810/211763971-0a1b93ac-9084-4b65-bbdd-973fcefaa29b.gif)
 
 <h2> 3. Enemy Settings </h2>
 
@@ -173,7 +183,7 @@ A Black Hole that appears and disappears at random locations. While the player i
 
 <ins>Teleport Time</ins>
 
-The spawn time interval.  
+The spawn time interval of the Trap actor.  
 
 <h2> 6. Collision Presets</h2> 
 
