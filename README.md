@@ -23,6 +23,8 @@ Ultimate: Redirect All - Left Control
 
 ![Screenshot 2023-01-10 201720](https://user-images.githubusercontent.com/57009810/211537445-24934e54-d196-409c-9d6c-80e645faee49.png)
 
+------
+
 <h3> Gun </h3>
 
 ![bullet](https://user-images.githubusercontent.com/57009810/211698159-61efea69-f00e-440a-90d8-757f85ad6022.gif)
