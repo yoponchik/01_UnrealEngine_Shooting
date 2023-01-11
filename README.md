@@ -44,6 +44,8 @@ Ultimate: Redirect All - Left Control
 
 ![bcount3](https://user-images.githubusercontent.com/57009810/211721091-c9491d25-b930-43b4-89f6-980fe54630eb.gif)
 
+----------------
+
 <h4> Bullet Angle </h4>
 
 <h2> 3. Enemy Settings </h2>
