@@ -85,7 +85,7 @@ followProb = 1
 
 BP_EnemySpawn is a blueprint actor that spawns Enemy every _spawnTime_ seconds.
 
-<h2> 5. Boss Settings </h2>
+<h2> 4. Boss Settings </h2>
 
 <h3> Boss</h3> 
 
@@ -106,6 +106,16 @@ moveOffset: The offset position from the original position. It determines the ta
 ![Screenshot 2023-01-10 201608](https://user-images.githubusercontent.com/57009810/211537832-10f1f349-854f-4e6e-b588-5e419eaff24c.png)
 
 ![Boss Spawn](https://user-images.githubusercontent.com/57009810/211541986-2e500ba5-83cd-4bc9-9cec-fcd9273277c5.png)
+
+<ins> Boss Level Score</ins>
+
+bossLevelScore = 3
+
+![bossLevelScore3](https://user-images.githubusercontent.com/57009810/211735547-0480065b-645d-454d-8490-9cf2aa4fa023.png)
+
+bossLevelScore = 5
+
+![bossLevelScore5](https://user-images.githubusercontent.com/57009810/211735560-9982a177-aaad-4138-88a1-2d8d510511c2.png)
 
 <h3> Boss Bullets</h3>
 
