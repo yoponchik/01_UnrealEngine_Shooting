@@ -97,9 +97,13 @@ The Boss actor is moved by a lerp (linear interpolation) function. As such, the 
 
 ![BossLerp](https://user-images.githubusercontent.com/57009810/211730046-3944a77f-719c-4547-b4e2-8fb137047257.png)
 
-moveTime: The time it takes for the actor to get to the final location. It determines the speed of the Boss actor. 
+<ins>Move Time</ins>
 
-moveOffset: The offset position from the original position. It determines the target position. 
+The time it takes for the actor to get to the final location. It determines the speed of the Boss actor. 
+
+<ins>Move Offset</ins>
+
+The offset position from the original position. It determines the target position. 
 
 <h3> Boss Spawn</h3>
 
