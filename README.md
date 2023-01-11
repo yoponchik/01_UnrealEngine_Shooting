@@ -31,13 +31,13 @@ Ultimate: Redirect All - Left Control
 
 <ins>Bullet Count</ins>
 
-bulletCount = 2
+_bulletCount = 2_
 
 ![bCount2](https://user-images.githubusercontent.com/57009810/211721069-d937000f-f1d3-4110-b0a7-c00d215bad1d.png)
 
 ![bcount2](https://user-images.githubusercontent.com/57009810/211721076-cf253888-b80b-4800-8504-6b3341b44774.gif)
 
-bulletCount = 3
+_bulletCount = 3_
 
 ![bCount3](https://user-images.githubusercontent.com/57009810/211721087-9889ec96-8ac0-4b31-976e-840f4307b927.png)
 
@@ -45,13 +45,13 @@ bulletCount = 3
 
 <ins> Bullet Angle </ins>
 
-bulletAngle = 15
+_bulletAngle = 15_
 
 ![bulletAngle15](https://user-images.githubusercontent.com/57009810/211726332-769d9643-6987-49d4-8cfe-473e672d0a45.png)
 
 ![bulletAngle15](https://user-images.githubusercontent.com/57009810/211726353-3308ffe9-cd9f-4d7b-a1ad-8b818ca65445.gif)
 
-bulletAngle = 60
+_bulletAngle = 60_
 
 ![bulletAngle60](https://user-images.githubusercontent.com/57009810/211726384-9633d70c-ef69-402d-bf4b-0bf3eb502687.png)
 
@@ -65,13 +65,13 @@ bulletAngle = 60
 
 <ins> Enemy Follow Probability </ins>
 
-followProb = 0.3
+_followProb = 0.3_
 
 ![followProbability0 3](https://user-images.githubusercontent.com/57009810/211727371-fbbcdd5d-eb4e-4062-9977-c248ac070b57.png)
 
 ![followProbability0 3](https://user-images.githubusercontent.com/57009810/211727411-05015d85-8785-4e4c-81aa-14c69691a678.gif)
 
-followProb = 1
+_followProb = 1_
 
 ![followProbability1](https://user-images.githubusercontent.com/57009810/211728087-04c1bb7a-3d0a-4c64-8183-1cddd09e360f.png)
 
