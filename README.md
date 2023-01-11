@@ -77,7 +77,7 @@ followProb = 1
 
 ![followProbability1](https://user-images.githubusercontent.com/57009810/211728097-e1fcac05-93e8-4b32-a0e6-47bce2dff76e.gif)
 
-<h3> 4. Enemy Spawn Settings </h3>
+<h3> Enemy Spawn Settings </h3>
 
 ![Screenshot 2023-01-10 201446](https://user-images.githubusercontent.com/57009810/211537535-bcc7494b-f53a-43f8-b11c-429580c327ed.png)
 
@@ -91,17 +91,26 @@ BP_EnemySpawn is a blueprint actor that spawns Enemy every _spawnTime_ seconds.
 
 ![Boss](https://user-images.githubusercontent.com/57009810/211541566-cd2d9972-d646-4422-8f76-c31012dd33c2.png)
 
+_Move Settings_
+
+The Boss actor is moved by a lerp (linear interpolation) function. As such, the Boss moves according to the current location, target location, speed, and time. 
+
+![BossLerp](https://user-images.githubusercontent.com/57009810/211730046-3944a77f-719c-4547-b4e2-8fb137047257.png)
+
+
+moveTime: The time it takes for the actor to get to the final location. It determines the speed of the Boss actor. 
+
+moveOffset: The offset position from the original position. It determines the target position. 
+
 <h3> Boss Spawn</h3>
 
 ![Screenshot 2023-01-10 201608](https://user-images.githubusercontent.com/57009810/211537832-10f1f349-854f-4e6e-b588-5e419eaff24c.png)
 
 ![Boss Spawn](https://user-images.githubusercontent.com/57009810/211541986-2e500ba5-83cd-4bc9-9cec-fcd9273277c5.png)
 
-
 <h3> Boss Bullets</h3>
 
 ![Enemy Bullet Settings](https://user-images.githubusercontent.com/57009810/211541553-9ba9a102-c6bb-40c6-a130-05e5383a15f1.png)
-
 
 <h2> 6. Misc Settings </h2>
 
