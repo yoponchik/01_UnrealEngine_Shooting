@@ -23,6 +23,15 @@ Ultimate: Redirect All - Left Control
 
 ![Screenshot 2023-01-10 201720](https://user-images.githubusercontent.com/57009810/211537445-24934e54-d196-409c-9d6c-80e645faee49.png)
 
+<h3> Gun </h3>
+
+![bullet](https://user-images.githubusercontent.com/57009810/211697943-080f915c-e335-4d0b-800f-7b20fa506bc3.gif)
+
+
+<h4> Bullet Count </h4>
+
+<h4> Bullet Angle </h4>
+
 <h2> 3. Enemy Settings </h2>
 
 ![enemy](https://user-images.githubusercontent.com/57009810/211540549-1a8ea26a-de65-4644-86db-89bf8b611c18.png)
