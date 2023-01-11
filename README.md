@@ -30,13 +30,13 @@ Ultimate: Redirect All - Left Control
 
 <h4> Bullet Count </h4>
 
-bulletCount = 2
+<ins>bulletCount = 2</ins>
 
 ![bCount2](https://user-images.githubusercontent.com/57009810/211721069-d937000f-f1d3-4110-b0a7-c00d215bad1d.png)
 
 ![bcount2](https://user-images.githubusercontent.com/57009810/211721076-cf253888-b80b-4800-8504-6b3341b44774.gif)
 
-bulletCount = 3 
+<ins>bulletCount = 3</ins>
 
 ![bCount3](https://user-images.githubusercontent.com/57009810/211721087-9889ec96-8ac0-4b31-976e-840f4307b927.png)
 
