@@ -58,8 +58,6 @@ bulletAngle = 60
 
 ![bulletAngle60](https://user-images.githubusercontent.com/57009810/211726394-839cadb3-a1b7-40d4-b6d9-e0c0c0283344.gif)
 
-===============
-
 <h2> 3. Enemy Settings </h2>
 
 ![enemy](https://user-images.githubusercontent.com/57009810/211540549-1a8ea26a-de65-4644-86db-89bf8b611c18.png)
