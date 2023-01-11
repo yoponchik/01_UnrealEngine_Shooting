@@ -117,6 +117,8 @@ bossLevelScore = 5
 
 ![bossLevelScore5](https://user-images.githubusercontent.com/57009810/211735560-9982a177-aaad-4138-88a1-2d8d510511c2.png)
 
+![bossLevelScore5](https://user-images.githubusercontent.com/57009810/211735698-2984a1a8-5fed-472b-b6d1-474a8e929fa1.gif)
+
 <h3> Boss Bullets</h3>
 
 ![Enemy Bullet Settings](https://user-images.githubusercontent.com/57009810/211541553-9ba9a102-c6bb-40c6-a130-05e5383a15f1.png)
