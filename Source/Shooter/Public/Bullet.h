@@ -24,14 +24,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 #pragma region Components
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Bullet Settings | Components");
 	class UBoxComponent* boxComp;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Bullet Settings | Components");
 	class UStaticMeshComponent* meshComp;
 #pragma endregion
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = BulletSettings);
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Bullet Settings | Movement");
 	float moveSpeed = 900;
 
 	//boss enemybullet

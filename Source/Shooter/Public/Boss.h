@@ -31,11 +31,11 @@ public:
 	class UStaticMeshComponent* meshComp;
 #pragma endregion
 
-	UPROPERTY(EditAnywhere, Category = BossSettings)
+	UPROPERTY(EditAnywhere, Category = "Boss Settings | Move Settings")
 	float moveTime = 10;
 
-	UPROPERTY(EditAnywhere, Category = BossSettings)
-	FVector moveOffset =FVector(0,0,-200);
+	UPROPERTY(EditAnywhere, Category = "Boss Settings | Move Settings")
+	FVector moveOffset = FVector(0,0,-200);
 	
 	void MoveBoss(float tick);
 
@@ -45,14 +45,15 @@ public:
 	
 	void BossPatternUpdate(float tick);
 
-	UPROPERTY(EditAnywhere, Category = BossSettings)
-	float bossBulletDistance = 100.0f;
-
 	//enemybullet
-	UPROPERTY(EditAnywhere, Category = BossSetings)
+	UPROPERTY(EditAnywhere, Category = "Boss Settings | Attack Settings")
 	TSubclassOf<class AEnemyBullet> enemyBulletFactory;
 
-	float patternDelayTime = 3;
+	UPROPERTY(EditAnywhere, Category = "Boss Settings | Attack Settings")
+	float bossBulletDistance = 100.0f;											//where the bullet will spawn
+
+	UPROPERTY(EditAnywhere, Category = "Boss Settings | Attack Settings")
+	float patternDelayTime = 3;													//time it takes for the next attack
 
 	#pragma region My Boss Attack
 	//UFUNCTION()

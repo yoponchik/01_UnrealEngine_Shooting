@@ -25,11 +25,11 @@ public:
 
 #pragma region Components
 	//USphereComponent -> root collision
-	UPROPERTY(EditAnywhere, Category = Collision)
+	UPROPERTY(EditAnywhere, Category = "Trap Settings | Components")
 	class USphereComponent* sphereComp;
 
 	//StaticMesh as child component
-	UPROPERTY(EditAnywhere, Category = Collision)
+	UPROPERTY(EditAnywhere, Category = "Trap Settings | Components")
 	class UStaticMeshComponent* meshComp;
 #pragma endregion
 
@@ -52,7 +52,7 @@ public:
 #pragma region TeleportTrap
 	void TeleportTrap(float deltaTime);
 	
-	UPROPERTY(EditAnywhere, Category = TeleportTrap)
+	UPROPERTY(EditAnywhere, Category = "Trap Settings | Movement")
 	float teleportTime = 2;
 #pragma endregion
 

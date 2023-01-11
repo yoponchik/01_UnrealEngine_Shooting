@@ -24,17 +24,17 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 #pragma region Components
-	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
+	UPROPERTY(EditInstanceOnly, Category = "Enemy Spawn Settings | Components")
 	class UArrowComponent* spawnArrow;
 	
-	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
+	UPROPERTY(EditInstanceOnly, Category = "Enemy Spawn Settings | Components")
 	class USceneComponent* rootScene;
 #pragma endregion
 
-	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
+	UPROPERTY(EditInstanceOnly, Category = "Enemy Spawn Settings | Sapwn Settings")
 	float spawnTime = 2;
 	
-	UPROPERTY(EditInstanceOnly, Category = SpawnSettings)
+	UPROPERTY(EditInstanceOnly, Category = "Enemy Spawn Settings | Sapwn Settings")
 	TSubclassOf<class AEnemy> enemyFactory;
 
 

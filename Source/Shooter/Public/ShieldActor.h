@@ -23,10 +23,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Shield Settings | Components")
 	class UBoxComponent* boxComp;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Shield Settings | Components")
 	class UStaticMeshComponent* meshComp;
 
 	UFUNCTION()
@@ -38,8 +38,10 @@ public:
 		const FHitResult& SweepResult);
 
 #pragma region Spin
+	UFUNCTION()
 	void SpinShield();
-	bool isAttached;
+
+	bool isAttached;														//used in PlayerMove
 
 	UFUNCTION()
 	void ResetAttach();

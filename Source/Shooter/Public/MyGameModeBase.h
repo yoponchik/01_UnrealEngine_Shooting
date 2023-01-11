@@ -16,7 +16,7 @@ public:
 	virtual void BeginPlay() override;
 	
 #pragma region Score UI
-	UPROPERTY(EditAnywhere, Category=DefaultSettings)
+	UPROPERTY(EditAnywhere, Category="Game Mode Settings | UI Settings")
 	TSubclassOf<class UMainWidget> mainWidget;
 	
 	UFUNCTION(BlueprintPure)
@@ -31,16 +31,17 @@ public:
 #pragma region Menu UI
 	void ShowMenu();
 	
-	UPROPERTY(EditAnywhere, Category=DefaultSettings)
+	UPROPERTY(EditAnywhere, Category = "Game Mode Settings | UI Settings")
 	TSubclassOf<class UMenuWidget> menuWidget;
 #pragma endregion
 
-//Explosion Ultimate
-TArray<class AEnemy*> enemyArray;
+	////Explosion Ultimate
+	////Deprecated
+	//TArray<class AEnemy*> enemyArray;
 
-int32 currentScore = 0;
+	int32 currentScore = 0;
 
-bool canSpawnEnemy;
+	bool canSpawnEnemy;
 
 private:
 #pragma region Score UI

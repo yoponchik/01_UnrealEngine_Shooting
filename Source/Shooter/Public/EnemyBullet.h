@@ -19,7 +19,6 @@ public:
 
 	virtual void BeginPlay() override;
 
-
 #pragma region Collision
 	//can have same name as playerbullet because not inherited each other
 	void OnOverlap(UPrimitiveComponent* OverlappedComponent, 

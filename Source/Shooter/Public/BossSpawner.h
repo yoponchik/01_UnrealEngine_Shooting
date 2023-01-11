@@ -25,24 +25,25 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 #pragma region Components
-	UPROPERTY(EditInstanceOnly, Category = "BossSettings")
+	UPROPERTY(EditInstanceOnly, Category = "Boss Settings | Components")
 	class USceneComponent* sceneComp;
 
-	UPROPERTY(EditInstanceOnly, Category = "BossSettings")
+	UPROPERTY(EditInstanceOnly, Category = "Boss Settings | Components")
 	class UArrowComponent* arrowComp;
 #pragma endregion
 
-	class AMyGameModeBase* gm;
-
-	UPROPERTY(EditAnywhere, Category = "BossSpawnSettings")
+	UPROPERTY(EditInstanceOnly, Category = "Boss Settings | Spawn Settings")
 	TSubclassOf<class ABoss> bossFactory;
 
-	void CheckSpawnTime();
+	UPROPERTY(EditInstanceOnly, Category = "Boss Settings | Spawn Settings")
+	int32 bossLevelScore = 2;														//amount of kills to bring in the boss
 
+private:
+	class AMyGameModeBase* gm;
+
+	void CheckSpawnTime();
 	void SpawnBoss();
 
 	bool isSpawn;
 	bool isDoneSpawn;
-
-	int32 bossLevelScore = 2;
 };

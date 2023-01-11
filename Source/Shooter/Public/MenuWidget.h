@@ -18,13 +18,13 @@ class SHOOTER_API UMenuWidget : public UUserWidget
 public:
 	
 	//buttons
-	UPROPERTY(EditDefaultsOnly, meta = (BindWidget))
+	UPROPERTY(EditDefaultsOnly, Category = "UI Settings|Buttons", meta = (BindWidget))
 	class UButton* btnResume;
 
-	UPROPERTY(EditDefaultsOnly, meta = (BindWidget))
+	UPROPERTY(EditDefaultsOnly, Category = "UI Settings|Buttons", meta = (BindWidget))
 	class UButton* btnRestart;
 
-	UPROPERTY(EditDefaultsOnly, meta = (BindWidget))
+	UPROPERTY(EditDefaultsOnly, Category = "UI Settings|Buttons", meta = (BindWidget))
 	class UButton* btnQuit;
 
 	virtual void NativeConstruct() override;
