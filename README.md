@@ -111,6 +111,18 @@ The offset position from the original position. It determines the target positio
 
 The distance between the bullet spawn point and the Boss actor. 
 
+_bulletDistance = 100_
+
+![bulletDistance100](https://user-images.githubusercontent.com/57009810/211760789-b6f11023-ff80-440d-aa15-16ed73597de2.png)
+
+![bulletDistance100](https://user-images.githubusercontent.com/57009810/211760803-43c54fab-89c7-4b4f-8b21-8c8c1df30d23.gif)
+
+_bulletDistance = 300_
+
+![bulletDistance300](https://user-images.githubusercontent.com/57009810/211760836-0c2f3565-254f-4e17-8719-382ebddf3f64.png)
+
+![bulletDistance300](https://user-images.githubusercontent.com/57009810/211760849-cb488bf1-697f-4400-aeb9-cae0ad2cb992.gif)
+
 <ins>Pattern Delay Time</ins>
 
 The attack cycle time. 
