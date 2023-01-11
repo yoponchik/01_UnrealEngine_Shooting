@@ -46,7 +46,19 @@ bulletCount = 2
 
 ----------------
 
-<h4> Bullet Angle </h4>
+<ins> Bullet Angle </ins>
+
+bulletAngle = 15
+
+![bulletAngle15](https://user-images.githubusercontent.com/57009810/211726332-769d9643-6987-49d4-8cfe-473e672d0a45.png)
+
+![bulletAngle15](https://user-images.githubusercontent.com/57009810/211726353-3308ffe9-cd9f-4d7b-a1ad-8b818ca65445.gif)
+
+bulletAngle = 60
+
+![bulletAngle60](https://user-images.githubusercontent.com/57009810/211726384-9633d70c-ef69-402d-bf4b-0bf3eb502687.png)
+
+![bulletAngle60](https://user-images.githubusercontent.com/57009810/211726394-839cadb3-a1b7-40d4-b6d9-e0c0c0283344.gif)
 
 <h2> 3. Enemy Settings </h2>
 
