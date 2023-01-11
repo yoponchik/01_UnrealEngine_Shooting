@@ -153,7 +153,7 @@ _bossLevelScore = 3_
 
 ![bossLevelScore3](https://user-images.githubusercontent.com/57009810/211756863-9b84ea17-82ef-4a45-aa5c-1f917426e42d.gif)
 
-_bossLevelScore = 5_
+_bossLevelScore = 6_
 
 ![bossLevelScore6](https://user-images.githubusercontent.com/57009810/211777734-2a525d5a-dd57-426c-8f2d-0cae2ded9756.png)
 
