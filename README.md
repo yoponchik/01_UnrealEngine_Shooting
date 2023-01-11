@@ -59,6 +59,8 @@ bulletAngle = 60
 
 <h2> 3. Enemy Settings </h2>
 
+<h3> Enemy </h3>
+
 ![enemy](https://user-images.githubusercontent.com/57009810/211540549-1a8ea26a-de65-4644-86db-89bf8b611c18.png)
 
 <ins> Enemy Follow Probability </ins>
@@ -75,7 +77,7 @@ followProb = 1
 
 ![followProbability1](https://user-images.githubusercontent.com/57009810/211728097-e1fcac05-93e8-4b32-a0e6-47bce2dff76e.gif)
 
-<h2>Enemy Spawn Settings</h2>
+<h3> 4. Enemy Spawn Settings </h3>
 
 ![Screenshot 2023-01-10 201446](https://user-images.githubusercontent.com/57009810/211537535-bcc7494b-f53a-43f8-b11c-429580c327ed.png)
 
@@ -83,13 +85,11 @@ followProb = 1
 
 BP_EnemySpawn is a blueprint actor that spawns Enemy every _spawnTime_ seconds.
 
-<h2> 4. Boss Settings </h2>
+<h2> 5. Boss Settings </h2>
 
 <h3> Boss</h3> 
 
 ![Boss](https://user-images.githubusercontent.com/57009810/211541566-cd2d9972-d646-4422-8f76-c31012dd33c2.png)
-
-![Boss](https://user-images.githubusercontent.com/57009810/211542174-f73aee1a-1b93-4766-90f0-fdb7eacadd18.png)
 
 <h3> Boss Spawn</h3>
 
@@ -103,7 +103,7 @@ BP_EnemySpawn is a blueprint actor that spawns Enemy every _spawnTime_ seconds.
 ![Enemy Bullet Settings](https://user-images.githubusercontent.com/57009810/211541553-9ba9a102-c6bb-40c6-a130-05e5383a15f1.png)
 
 
-<h2> 5. Misc Settings </h2>
+<h2> 6. Misc Settings </h2>
 
 <h3> Kill Zone</h3> 
 
