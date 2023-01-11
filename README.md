@@ -105,6 +105,16 @@ The time it takes for the actor to get to the final location. It determines the 
 
 The offset position from the original position. It determines the target position. 
 
+<h3> Attack Settings </h3> 
+
+<ins>Bullet Distance</ins>
+
+The distance between the bullet spawn point and the Boss actor. 
+
+<ins>Pattern Delay Time</ins>
+
+The attack cycle time. 
+
 <h3> Boss Spawn</h3>
 
 ![Screenshot 2023-01-10 201608](https://user-images.githubusercontent.com/57009810/211537832-10f1f349-854f-4e6e-b588-5e419eaff24c.png)
