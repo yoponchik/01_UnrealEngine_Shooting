@@ -21,7 +21,7 @@ AEnemy::AEnemy()
 	SetRootComponent(boxComp);
 	boxComp->SetBoxExtent(FVector(50)); 
 
-#pragma region Collision
+	#pragma region Collision
 	//enable collision with query and physics mode
 	boxComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
@@ -34,7 +34,7 @@ AEnemy::AEnemy()
 	//Set player and bullet to overlap
 	boxComp->SetCollisionResponseToChannel(ECC_GameTraceChannel1, ECR_Overlap);	//Player
 	boxComp->SetCollisionResponseToChannel(ECC_GameTraceChannel3, ECR_Overlap);	//Bullet
-#pragma endregion
+	#pragma endregion
 
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh"));
 	meshComp->SetupAttachment(RootComponent);
@@ -74,9 +74,6 @@ void AEnemy::BeginPlay()
 			targetDir.Normalize();					//need to normalize or else it will shoot out very far far
 		
 			direction = targetDir;
-
-			//target->OnPlayerUltimateActivate.AddDynamic(this, &AEnemy::DestroyMyself);
-
 		}
 	}
 	else {
@@ -84,10 +81,9 @@ void AEnemy::BeginPlay()
 	}
 
 	if(target != nullptr){
+		target->OnPlayerUltimateActivate.AddDynamic(this, &AEnemy::DestroyMyself);
 		target->OnPlayerRedirectEnemy.AddDynamic(this, &AEnemy::RedirectEnemy);
 	}
-
-
 #pragma endregion
 
 #pragma region Setup Collision
@@ -124,7 +120,7 @@ void AEnemy::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	//}
 #pragma endregion
 
-#pragma region Destroy Myself - Game Mode Array Method
+#pragma region Destroy Myself - Game Mode Delegate Method
 	if (target != nullptr) {
 		target->OnPlayerUltimateActivate.RemoveDynamic(this, &AEnemy::DestroyMyself);
 		target->OnPlayerRedirectEnemy.RemoveDynamic(this, &AEnemy::RedirectEnemy);
