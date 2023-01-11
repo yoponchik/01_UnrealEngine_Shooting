@@ -81,6 +81,8 @@ followProb = 1
 
 ![Enemyspawn](https://user-images.githubusercontent.com/57009810/211540783-0ec67767-2922-41fc-acff-aab6d2c88754.png)
 
+BP_EnemySpawn is a blueprint actor that spawns Enemy every _spawnTime_ seconds.
+
 <h2> 4. Boss Settings </h2>
 
 <h3> Boss</h3> 
